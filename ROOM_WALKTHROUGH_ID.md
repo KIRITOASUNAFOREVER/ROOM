@@ -730,7 +730,7 @@ Setelah prolog dan masuk ke sistem kamar:
 | 9 | Toilet | Door | `EV_tousatu_osikko_doa` | Bukti toilet |
 | 10 | Toilet | Ventilation | `EV_tousatu_osikko_kanki` | Bukti toilet |
 
-**Cara memasang:** pilih `sinnyu` → `Install device`/`Placement` → masuk ke ruangan dengan tombol `Changing room`, `Bathroom`, atau `Toilet` → klik titik yang belum berwarna → pilih **`Install camera`**. Jangan pilih `Stop` setelah membuka layar konfirmasi bila memang ingin menghabiskan satu kamera; `Stop` membatalkan pemasangan dan tidak mengurangi counter.
+**Cara memasang:** pilih **`Sneak in`** → **`Install device`/`Placement`** → masuk ke ruangan dengan tombol `Changing room`, `Bathroom`, atau `Toilet` → klik titik yang belum berwarna → pilih **`Install camera`**. Jangan pilih `Stop` setelah membuka layar konfirmasi bila memang ingin menghabiskan satu kamera; `Stop` membatalkan pemasangan dan tidak mengurangi counter.
 
 ### D.3 Urutan kamera yang direkomendasikan untuk Subjugation
 
@@ -746,7 +746,7 @@ Urutan tersebut memberikan lima sumber bukti yang berbeda dan menyisakan titik l
 
 ### D.4 Cara mendapatkan empat kamera tambahan tanpa menghitung sendiri
 
-Mulai dari `com=3`. Untuk memperoleh empat kamera tambahan, pilih `kousaku` tepat **12 kali** dengan urutan progres berikut:
+Mulai dari `com=3`. Untuk memperoleh empat kamera tambahan, pilih **`Craft / Work`** tepat **12 kali** dengan urutan progres berikut:
 
 | Kamera tambahan | Pilihan `kousaku` yang diperlukan | Hasil |
 |---:|---:|---|
@@ -755,7 +755,7 @@ Mulai dari `com=3`. Untuk memperoleh empat kamera tambahan, pilih `kousaku` tepa
 | +3 | 3 kali | Crafting Level 4; `com` bertambah 1 |
 | +4 | 4 kali | Crafting Level 5; `com` bertambah 1 |
 
-Total **12 kali `kousaku`** menghasilkan `com=7` sebelum pemasangan. Pasang lima kamera target Subjugation dengan lima infiltrasi/kunjungan sesuai kebutuhan. Jangan menggunakan `kousaku` tambahan di tengah urutan jika ingin mengikuti counter ini persis.
+Total **12 kali `Craft / Work`** menghasilkan `com=7` sebelum pemasangan. Pasang lima kamera target Subjugation dengan lima kunjungan **`Sneak in`** sesuai kebutuhan. Jangan menggunakan **`Craft / Work`** tambahan di tengah urutan jika ingin mengikuti counter ini persis.
 
 ### D.5 Cara memperoleh kapasitas aksi infiltrasi
 
@@ -763,8 +763,8 @@ Awal permainan memberi `koudou=3`, sehingga satu kunjungan dapat memasang maksim
 
 1. Infiltrasi 1: pasang kamera 1–3; biaya `com -3`, `koudou -3`.
 2. Infiltrasi 2: pasang kamera 4–5; biaya `com -2`, `koudou -2`.
-3. Bila layar tidak memberi dua aksi pada infiltrasi kedua, pilih `Leave`, lalu lakukan `sinnyu` berikutnya; jangan mengulang pemasangan pada titik yang sudah aktif.
-4. Setelah setiap `sinnyu`, game menaikkan `sinnyu_count` satu kali. Target aman sebelum membuka route adalah **`sinnyu_count >= 5`** dan lima titik bukti aktif.
+3. Bila layar tidak memberi dua aksi pada kunjungan kedua, pilih `Leave`, lalu lakukan **`Sneak in`** berikutnya; jangan mengulang pemasangan pada titik yang sudah aktif.
+4. Setelah setiap **`Sneak in`**, game menaikkan counter infiltrasi satu kali. Target aman sebelum membuka route adalah **lima kunjungan** dan lima titik bukti aktif.
 
 ### D.6 Resep harian Pure Love — dari awal sampai route entry
 
@@ -772,26 +772,26 @@ Gunakan resep ini jika targetnya **TRUE END: Happiness Given Form** atau **PURE 
 
 | Hari/slot | Pilih | Detail wajib |
 |---|---|---|
-| Hari 1 | `kousaku` | Mulai crafting Level 1 |
-| Hari 2 | `kousaku` | Selesaikan Level 2; `com` bertambah 1 |
-| Hari 3 | `kousatu` | Buka titik observasi yang tersedia |
-| Hari 4 | `sansaku` | `Go to the Shopping District`; pilih dialog affection jika muncul |
-| Hari 5 | `sinnyu` | Pasang **Living room — Tablet** bila belum aktif; jika `com=0`, `Leave` |
-| Minggu 1 | `Save` lalu `yasumu` | Pastikan alert tetap di bawah 9 |
-| Hari 6–10 | `kousaku, kousaku, kousatu, sansaku, sinnyu` | Ulangi; pada `sinnyu` pasang **Living room — Alarm clock** |
-| Minggu 2 | `Save` lalu `yasumu` | Pilih event romance bila dipanggil |
+| Hari 1 | **`Craft / Work`** | Mulai crafting Level 1 |
+| Hari 2 | **`Craft / Work`** | Selesaikan Level 2; `com` bertambah 1 |
+| Hari 3 | **`Observe / Think`** | Buka titik observasi yang tersedia |
+| Hari 4 | **`Go out / Investigate`** | `Go to the Shopping District`; pilih dialog affection jika muncul |
+| Hari 5 | **`Sneak in`** | Pilih **`Install camera`**, pasang **Living room — Tablet** bila belum aktif; jika `com=0`, `Leave` |
+| Minggu 1 | `Save` lalu **`Rest`** | Pastikan alert tetap di bawah 9 |
+| Hari 6–10 | **`Craft / Work`, `Craft / Work`, `Observe / Think`, `Go out / Investigate`, `Sneak in`** | Ulangi; pada **`Sneak in`** pilih **`Install camera`**, lalu pasang **Living room — Alarm clock** |
+| Minggu 2 | `Save` lalu **`Rest`** | Pilih event romance bila dipanggil |
 | Hari 11–15 | `kousaku, kousatu, sansaku, sansaku, yasumu` | Fokus event hubungan; jangan memilih opsi yang menaikkan alert |
-| Minggu 3 | `Save` lalu `yasumu` | Romance Mei: **`Be careful from now on.`** |
+| Minggu 3 | `Save` lalu **`Rest`** | Romance Mei: **`Be careful from now on.`** |
 | Hari 16–20 | `kousaku, kousatu, sansaku, sinnyu, yasumu` | Jika ada kamera, pasang **Changing room — Fire alarm** |
-| Minggu 4 | `Save` lalu `yasumu` | Romance Juni: **`Do you like meat?`** |
+| Minggu 4 | `Save` lalu **`Rest`** | Romance Juni: **`Do you like meat?`** |
 | Hari 21–25 | `kousaku, kousatu, sansaku, sansaku, yasumu` | Romance Juli: **`Just call me if you're ever in trouble`** |
-| Minggu 5 | `Save` lalu `yasumu` | Jangan memilih `Assault her` |
+| Minggu 5 | `Save` lalu **`Rest`** | Jangan memilih `Assault her` |
 | Hari 26–30 | `kousaku, kousatu, sansaku, sinnyu, yasumu` | Romance Agustus: **`You've got wonderful parents.`** |
-| Minggu 6 | `Save` lalu `yasumu` | Target `Sunday_P_koukando > 5` |
+| Minggu 6 | `Save` lalu **`Rest`** | Target `Sunday_P_koukando > 5` |
 | Hari 31–35 | `kousaku, kousatu, sansaku, sansaku, yasumu` | Romance September: **`It's dangerous if your fans show up though.`** |
-| Minggu 7 | `Save` lalu `yasumu` | Pastikan `Sunday_P_koukando > 8` |
+| Minggu 7 | `Save` lalu **`Rest`** | Pastikan `Sunday_P_koukando > 8` |
 | Hari 36–40 | `kousaku, kousatu, sansaku, sinnyu, yasumu` | Jangan mengaktifkan route Konno |
-| Minggu 8 | `Save` lalu `yasumu` | Saat confession Yume muncul, lanjutkan sampai `route_jyunai=1` |
+| Minggu 8 | `Save` lalu **`Rest`** | Saat confession Yume muncul, lanjutkan sampai `route_jyunai=1` |
 
 Jika sebuah event wajib mengambil satu slot, event tersebut menggantikan aktivitas pada hari itu; jangan memilih aktivitas tambahan setelah event. Setelah `route_jyunai=1`, kalender normal berhenti dan game otomatis memanggil tahap Pure Love.
 
@@ -1090,6 +1090,8 @@ Setelah setiap bad ending, load kembali save asalnya. Jangan melanjutkan dari ba
 
 Bagian ini sengaja mengulang beberapa langkah. Ikuti dari atas ke bawah. Setiap kali tertulis **LOAD**, kembali ke save yang disebut; jangan meneruskan dari ending sebelumnya.
 
+**Aturan penamaan:** langkah yang harus diklik memakai label tombol game, misalnya **`Sneak in`**, **`Search`**, **`Home`**, **`Craft / Work`**, **`Observe / Think`**, **`Go out / Investigate`**, dan **`Rest`**. Nama seperti `sinnyu`, `kousaku`, atau `yasumu` hanya nama variabel/source dan dicantumkan bila membantu membaca counter.
+
 ### F.0 Setup save sebelum mulai
 
 1. Mulai New Game.
@@ -1138,15 +1140,15 @@ Counter awal yang perlu diketahui:
 - `route_jyunai=0`
 - `route_ryoujyoku=0`
 
-#### Arti tiga pilihan setelah memilih `sinnyu`
+#### Arti tiga pilihan setelah memilih **`Sneak in`**
 
-Setiap `sinnyu` membuka menu tindakan kamar:
+Setiap **`Sneak in`** membuka menu tindakan kamar:
 
-- **`Install camera`** (`janp_haiti`) — masuk ke layar pemasangan kamera. Pilih lokasi yang valid, lalu konfirmasi pemasangan.
-- **`Search`** (`janp_bussyoku`) — memeriksa barang/lokasi di kamar; ini menambah progres investigasi atau memicu event item bila syaratnya terpenuhi.
-- **`Home`** (`janp_kitaku`) — langsung keluar tanpa memasang kamera atau mencari. Gunakan jika hanya ingin menambah `sinnyu_count` atau menghindari tindakan tambahan.
+- **`Install camera`** — masuk ke layar pemasangan kamera. Pilih lokasi yang valid, lalu konfirmasi pemasangan.
+- **`Search`** — memeriksa barang/lokasi di kamar; ini menambah progres investigasi atau memicu event item bila syaratnya terpenuhi.
+- **`Home`** — langsung keluar tanpa memasang kamera atau mencari. Gunakan jika hanya ingin menambah counter infiltrasi atau menghindari tindakan tambahan.
 
-Pada **sinnyu ketiga**, game memanggil `EV_BAD02` segera setelah masuk, sebelum menu tiga tindakan dipakai. Jadi untuk bad ending Irresistible Desires, pilihan **`Install camera / Search / Home` tidak muncul**; langsung pilih **`Assault her`**.
+Pada **`Sneak in` ketiga**, game memanggil event tertangkap segera setelah masuk, sebelum menu tiga tindakan dipakai. Jadi untuk bad ending Irresistible Desires, pilihan **`Install camera / Search / Home` tidak muncul**; langsung pilih **`Assault her`**.
 
 ### F.1 Bad ending pertama — Irresistible Desires
 
@@ -1155,9 +1157,9 @@ Ini adalah bad ending paling cepat karena cukup memicu `sinnyu_count==3`.
 1. Dari New Game, pilih **`Yes`** pada `Skip the prologue and tutorial?`.
 2. Kamera fire alarm otomatis aktif; tidak ada pilihan hadiah yang perlu dijawab.
 3. Buat **A1**, lalu **LOAD A1**.
-4. Senin minggu 1: pilih **`sinnyu`**, lalu **`Home`**.
-5. Selasa minggu 1: pilih **`sinnyu`**, lalu **`Home`**.
-6. Rabu minggu 1: pilih **`sinnyu`**. Game memanggil event tertangkap sebelum menu tindakan muncul.
+4. Senin minggu 1: pilih **`Sneak in`**, lalu **`Home`**.
+5. Selasa minggu 1: pilih **`Sneak in`**, lalu **`Home`**.
+6. Rabu minggu 1: pilih **`Sneak in`**. Game memanggil event tertangkap sebelum menu tindakan muncul.
 7. Saat muncul dua pilihan:
    - pilih **`Assault her`**;
    - jangan pilih `Hide`.
@@ -1171,8 +1173,8 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
 1. Dari New Game, pilih **`Yes`** pada pertanyaan skip; tidak ada pilihan hadiah.
 2. Buat **A1**, lalu **LOAD A1**.
 3. Mainkan beberapa minggu sampai menu Minggu mengizinkan kunjungan Yume.
-4. Jangan melakukan 12 `kousaku` dan jangan mengejar lima kamera.
-5. Pilih `sinnyu` seperlunya agar menu Minggu menampilkan **`Go see her`**.
+4. Jangan melakukan 12 **`Craft / Work`** dan jangan mengejar lima kamera.
+5. Pilih **`Sneak in`** seperlunya agar menu Minggu menampilkan **`Go see her`**.
 6. Pilih **`Go see her`** ketika bukti belum mencapai `yusuri_goukei > 4`.
 7. Pada event pemeriksaan awal, jangan memenuhi syarat bukti:
    - target yang sengaja dibuat adalah `yusuri_goukei <= 4`;
@@ -1189,12 +1191,12 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
 2. Pada hadiah prolog pilih **`I'd be happy, my dear Yume!`**.
 3. Di tutorial kamar pilih **`Install camera`**, lalu pasang kamera pada **fire alarm ruang tamu**.
 4. Buat **A1**, lalu **LOAD A1**.
-5. Saat memilih `sinnyu`, pilih **`Search`** (`janp_bussyoku`) dan lakukan investigasi sampai selesai; jangan memilih `Home` bila event tersebut diperlukan untuk menaikkan kewaspadaan.
+5. Saat memilih **`Sneak in`**, pilih **`Search`** dan lakukan investigasi sampai selesai; jangan memilih `Home` bila event tersebut diperlukan untuk menaikkan kewaspadaan.
 6. Ketika event barang atau lokasi menaikkan kewaspadaan, biarkan event selesai. Counter `Sunday_P_keikaido` bertambah satu pada event tersebut.
 7. Setelah setiap Minggu, buka **Profile → keikaido** untuk melihat status. Jangan tidur jika belum ingin mencapai angka 9.
 8. Ulangi investigasi sampai profil menunjukkan kewaspadaan lebih dari 8.
-9. Buat save **B-PF-9** sebelum memilih `yasumu`.
-10. Pilih **`yasumu`**.
+9. Buat save **B-PF-9** sebelum memilih **`Rest`**.
+10. Pilih **`Rest`**.
 11. Saat source membaca `Sunday_P_keikaido==9`, game langsung memanggil **BAD END: Plan Failed**.
 12. Jika counter meloncat melewati 9 karena event tertentu, LOAD A1 dan ulangi dengan investigasi yang lebih sedikit. Source hanya memanggil ending pada nilai tepat 9.
 
@@ -1207,7 +1209,7 @@ Ending ini adalah cabang lanjutan, bukan ending awal biasa.
 3. Pasang kamera tutorial pada **fire alarm ruang tamu**.
 4. Buat **A1**, lalu **LOAD A1**.
 5. Ikuti persiapan Subjugation pada F.6 sampai route sudah aktif.
-6. Saat memilih `sinnyu`, gunakan **`Search`** untuk memeriksa lokasi/item yang diminta event; gunakan **`Home`** hanya setelah pemeriksaan selesai. Lanjutkan event sampai cabang tambahan `tuika_K_R` muncul.
+6. Saat memilih **`Sneak in`**, gunakan **`Search`** untuk memeriksa lokasi/item yang diminta event; gunakan **`Home`** hanya setelah pemeriksaan selesai. Lanjutkan event sampai cabang tambahan `tuika_K_R` muncul.
 7. Buat save **B-PF2** sebelum memasuki cabang tambahan.
 8. Saat Konno menegur dan pilihan cabang muncul, pilih jawaban yang membuat konflik berlanjut dan polisi dipanggil. Jangan memilih jawaban damai/meninggalkan lokasi.
 9. Biarkan percakapan selesai sampai polisi masuk.
@@ -1223,7 +1225,7 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
 1. Dari New Game, pilih **`Yes`** untuk melewati prolog/tutorial.
 2. Tidak ada pilihan jawaban hadiah karena prolog dilewati.
 3. Buat **A1**, lalu **LOAD A1**.
-4. Senin–Jumat gunakan kombinasi `sansaku`, `kousatu`, dan `yasumu`; jangan memilih `Go see her`.
+4. Senin–Jumat gunakan kombinasi **`Go out / Investigate`**, **`Observe / Think`**, dan **`Rest`**; jangan memilih `Go see her`.
 5. Saat event Konno April muncul, biarkan event selesai.
 6. Hasil event: `konno_4gatu += 1`, `konno_koukando += 1`.
 7. Buat save **K0** setelah event April.
@@ -1272,7 +1274,7 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
 3. Setelah event, pastikan **`konno_10gatu=1`**.
 4. Jika ingin telepon ucapan selamat, naikkan `Sunday_P_koukando >= 9`; kalau tidak, telepon itu boleh tidak muncul.
 5. Buat save **K5 — Konno confession complete**.
-6. Pilih `yasumu` setiap Minggu sampai `R_month==29`.
+6. Pilih **`Rest`** setiap Minggu sampai `R_month==29`.
 7. Jangan mengaktifkan confession Yume.
 8. Ending: **KONNO END: A Different Kind of Happiness**.
 
@@ -1283,12 +1285,12 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
 1. Dari New Game, pilih **`Yes`** untuk melewati prolog/tutorial.
 2. Tidak ada pilihan hadiah; kamera fire alarm awal otomatis aktif.
 3. Buat **A1**, lalu **LOAD A1**.
-4. Sampai kamera cukup, pilih `kousaku` total **12 kali**:
+4. Sampai kamera cukup, pilih **`Craft / Work`** total **12 kali**:
    - 2 kali → kamera tambahan pertama;
    - 3 kali → kamera tambahan kedua;
    - 3 kali → kamera tambahan ketiga;
    - 4 kali → kamera tambahan keempat.
-5. Saat memilih `sinnyu`, pilih **`Install camera`** (`janp_haiti`), lalu pasang kamera dengan urutan:
+5. Saat memilih **`Sneak in`**, pilih **`Install camera`**, lalu pasang kamera dengan urutan:
    - Living room → **Tablet**;
    - Living room → **Alarm clock**;
    - Changing room → **Fire alarm**;
