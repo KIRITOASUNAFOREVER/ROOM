@@ -1159,14 +1159,15 @@ Ini adalah bad ending paling cepat karena cukup memicu `sinnyu_count==3`.
 1. Dari New Game, pilih **`Yes`** pada `Skip the prologue and tutorial?`.
 2. Kamera fire alarm otomatis aktif; tidak ada pilihan hadiah yang perlu dijawab.
 3. Buat **A1**, lalu **LOAD A1**.
-4. Senin minggu 1: pilih **`Sneak in`**, lalu **`Home`**.
-5. Selasa minggu 1: pilih **`Sneak in`**, lalu **`Home`**.
-6. Rabu minggu 1: pilih **`Sneak in`**. Game memanggil event tertangkap sebelum menu tindakan muncul.
+4. **Senin:** pilih **`Sneak in`**, lalu **`Home`**.
+5. **Selasa:** pilih **`Sneak in`**, lalu **`Home`**.
+6. **Rabu:** pilih **`Sneak in`**. Game langsung memanggil event tertangkap sebelum menu **`Install camera / Search / Home`** muncul.
 7. Saat muncul dua pilihan:
    - pilih **`Assault her`**;
    - jangan pilih `Hide`.
 8. Ending yang keluar: **BAD END: Irresistible Desires**.
-9. Setelah melihat ending, jangan overwrite A1.
+9. **Mengapa hanya tiga tindakan?** Karena ending langsung dipanggil pada `Sneak in` ketiga. Kalender tidak sempat meminta slot Kamis/Jumat atau Minggu. Jadi F.1 memang hanya membutuhkan tiga kali **`Sneak in`**, bukan tiga dari lima slot yang harus diselesaikan.
+10. Setelah melihat ending, jangan overwrite A1.
 
 ### F.2 Bad ending kedua — Mission Failed
 
@@ -1174,16 +1175,42 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
 
 1. Dari New Game, pilih **`Yes`** pada pertanyaan skip; tidak ada pilihan hadiah.
 2. Buat **A1**, lalu **LOAD A1**.
-3. Mainkan beberapa minggu sampai menu Minggu mengizinkan kunjungan Yume.
-4. Jangan melakukan 12 **`Craft / Work`** dan jangan mengejar lima kamera.
-5. Pilih **`Sneak in`** seperlunya agar menu Minggu menampilkan **`Go see her`**.
-6. Pilih **`Go see her`** ketika bukti belum mencapai `yusuri_goukei > 4`.
-7. Pada event pemeriksaan awal, jangan memenuhi syarat bukti:
+3. Untuk route ini, jangan pilih **`Sneak in`**, jangan pilih **`Search`**, dan jangan pilih **`Craft / Work`**. Kita sengaja membiarkan bukti tetap kurang.
+4. Setiap minggu normal harus diisi lima slot:
+   - **Senin:** `Rest`
+   - **Selasa:** `Rest`
+   - **Rabu:** `Rest`
+   - **Kamis:** `Rest`
+   - **Jumat:** `Rest`
+5. Setelah lima slot selesai, pada Minggu pilih **`Save`**, lalu **`Rest`** untuk memajukan kalender.
+6. Ulangi jadwal lima `Rest` + Minggu `Save`/`Rest` sampai kalender memasuki **Juli**, yaitu saat `R_month > 12`.
+7. Jangan memulai route Yume selama kalender berjalan:
+   - jika event otomatis muncul, biarkan event selesai;
+   - jangan memilih dialog atau tindakan yang memulai confession Yume;
+   - jangan memilih **`Go see her`** sebelum bukti siap.
+8. Pada Minggu pertama ketika tombol kunjungan muncul, pilih **`Go see her`**.
+9. Karena tidak pernah memasang lima kamera, bukti yang terbaca tetap kurang dari syarat route:
+   - target gagal: `yusuri_goukei <= 4`;
+   - jangan memasang kamera tambahan;
+   - jangan pilih **`Install camera`** atau **`Search`** untuk mengumpulkan bukti.
+10. Pada event pemeriksaan awal, jangan memenuhi syarat bukti:
    - target yang sengaja dibuat adalah `yusuri_goukei <= 4`;
    - jangan memasang lima titik kamera.
-8. Biarkan event berjalan sampai polisi datang.
-9. Ending yang keluar: **BAD END: Mission Failed**.
-10. Jika menu tidak menampilkan `Go see her`, lanjutkan slot biasa tanpa mengaktifkan route Yume, lalu cek lagi pada Minggu berikutnya.
+11. Biarkan seluruh event berjalan sampai Yume meminta bantuan dan polisi datang. Tidak ada **tindakan scene** yang perlu dipilih pada route ini; ini adalah event pemeriksaan bukti, bukan scene J1–J3.
+12. Ending yang keluar: **BAD END: Mission Failed**.
+
+#### Jadwal kalender F.2 sampai tombol `Go see her`
+
+Gunakan pola yang sama pada setiap baris. Angka bulan mengikuti source: `R_month 1–4 = April`, `5–8 = Mei`, `9–12 = Juni`, dan `13–16 = Juli`.
+
+| Minggu kalender | Slot Senin–Jumat | Minggu | Hasil |
+|---|---|---|---|
+| April 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tidak ada kamera/bukti |
+| Mei 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Jangan memulai route Yume |
+| Juni 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu sampai kalender melewati `R_month=12` |
+| Juli minggu pertama | `Rest, Rest, Rest, Rest, Rest` | Saat tombol muncul, pilih `Go see her` | Masuk event Mission Failed |
+
+**Catatan:** event utama otomatis pada awal/akhir bulan tetap boleh muncul. Jangan mengganti jadwal hanya karena ada dialog otomatis; biarkan event selesai, lalu lanjutkan `Rest`. Bila tombol belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan mengisi kekurangan dengan `Sneak in`, karena itu dapat memicu `EV_BAD02` pada kunjungan ketiga.
 
 ### F.3 Bad ending ketiga — Plan Failed
 
