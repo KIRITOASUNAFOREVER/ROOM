@@ -1093,17 +1093,46 @@ Bagian ini sengaja mengulang beberapa langkah. Ikuti dari atas ke bawah. Setiap 
 ### F.0 Setup save sebelum mulai
 
 1. Mulai New Game.
-2. Jalankan prolog sampai menu kamar terbuka.
-3. Jika prolog bertanya pemasangan kamera awal, pilih **`Yes`**.
-4. Buat save:
+2. Pada pertanyaan **`Skip the prologue and tutorial?`**, ikuti pilihan yang ditulis di bagian ending. Jangan menganggap semua route memakai pilihan yang sama.
+3. Jika memilih **`No`**, ikuti tutorial sampai pilihan pemasangan kamera:
+   - pilih **`Install camera`**;
+   - jangan pilih **`Stop`**;
+   - pada tutorial masuk kamar, pilih tindakan **install camera** di fire alarm ruang tamu.
+4. Jika memilih **`Yes`**, prolog dan tutorial dilewati, kamera fire alarm langsung dianggap terpasang, dan game masuk ke menu kamar.
+5. Buat save:
    - **A0 — New Game/prolog**
    - **A1 — Menu minggu pertama**
-5. Semua ending di bawah dimulai dari **A1**, kecuali jika tertulis lain.
+6. Semua ending di bawah dimulai dari **A1**, kecuali jika tertulis lain.
+
+#### Pilihan prolog yang benar untuk tiap route
+
+Pilihan pertama hanya menentukan counter awal; tidak mengunci ending. Saat Yume memberikan hadiah, pilih:
+
+- **`You didn't have to!`** → `Sunday_P_koukando += 1` (hubungan).
+- **`If it is something simple, I don't want it.`** → `Sunday_P_yuisei += 1` (kemurnian/kepercayaan).
+- **`I'd be happy, my dear Yume!`** → `Sunday_P_keikaido += 1` (kewaspadaan).
+
+Gunakan resep berikut sebelum masuk ke langkah ending:
+
+| Ending | Ambil prolog? | Jawaban hadiah | Alasan |
+|---|---|---|---|
+| Irresistible Desires | **Tidak** | Tidak ada jawaban hadiah | Counter prolog tidak diperlukan |
+| Mission Failed | **Tidak** | Tidak ada jawaban hadiah | Bukti sengaja dibiarkan kurang |
+| Plan Failed | **Ya** | **`I'd be happy, my dear Yume!`** | Counter kewaspadaan adalah target utama |
+| Plan Failed 2 | **Ya** | **`I'd be happy, my dear Yume!`** | Menjaga jalur investigasi/konflik |
+| Konno End | **Tidak** | Tidak ada jawaban hadiah | Konno tidak membutuhkan counter prolog Yume |
+| Revenge / Confined / Subjugation | **Tidak** | Tidak ada jawaban hadiah | Persiapan kamera dan bukti adalah target utama |
+| Pure Love gelap | **Ya** | **`If it is something simple, I don't want it.`** | Mulai dengan `Sunday_P_yuisei += 1` |
+| Pure Love positif/True | **Ya** | **`You didn't have to!`** | Mulai dengan `Sunday_P_koukando += 1`; pilihan romance berikutnya tetap wajib |
+| Marriage dari Pure Love | **Ya** | **`You didn't have to!`** | Memudahkan target hubungan sebelum marriage |
+| Marriage dari Subjugation | **Tidak** | Tidak ada jawaban hadiah | Route dasar sudah Subjugation, bukan romance awal |
+
+**Aturan aman:** bila ingin satu save dasar yang bisa dipakai untuk semua route, pilih **`No`**, pasang kamera tutorial, lalu pilih **`You didn't have to!`**. Untuk Pure Love, counter akhirnya tetap harus dikejar lewat pilihan romance harian; pilihan prolog saja tidak cukup.
 
 Counter awal yang perlu diketahui:
 
 - `R_month=1`
-- `com=3` setelah masuk sistem kamar
+- `com=1` setelah prolog/tutorial selesai; nilainya sama baik saat tutorial dilewati maupun saat kamera tutorial dipasang
 - `koudou=3` saat infiltrasi
 - `Sunday_P_keikaido=0`
 - `route_jyunai=0`
@@ -1113,58 +1142,67 @@ Counter awal yang perlu diketahui:
 
 Ini adalah bad ending paling cepat karena cukup memicu `sinnyu_count==3`.
 
-1. **LOAD A1.**
-2. Senin minggu 1: pilih **`sinnyu`**. Tidak perlu memasang kamera.
-3. Selasa minggu 1: pilih **`sinnyu`**. Tidak perlu memasang kamera.
-4. Rabu minggu 1: pilih **`sinnyu`**. Setelah masuk, game memanggil event tertangkap.
-5. Saat muncul dua pilihan:
+1. Dari New Game, pilih **`Yes`** pada `Skip the prologue and tutorial?`.
+2. Kamera fire alarm otomatis aktif; tidak ada pilihan hadiah yang perlu dijawab.
+3. Buat **A1**, lalu **LOAD A1**.
+4. Senin minggu 1: pilih **`sinnyu`**. Tidak perlu memasang kamera.
+5. Selasa minggu 1: pilih **`sinnyu`**. Tidak perlu memasang kamera.
+6. Rabu minggu 1: pilih **`sinnyu`**. Setelah masuk, game memanggil event tertangkap.
+7. Saat muncul dua pilihan:
    - pilih **`Assault her`**;
    - jangan pilih `Hide`.
-6. Ending yang keluar: **BAD END: Irresistible Desires**.
-7. Setelah melihat ending, jangan overwrite A1.
+8. Ending yang keluar: **BAD END: Irresistible Desires**.
+9. Setelah melihat ending, jangan overwrite A1.
 
 ### F.2 Bad ending kedua — Mission Failed
 
 Gunakan syarat `Go see her` tanpa bukti yang cukup.
 
-1. **LOAD A1.**
-2. Mainkan beberapa minggu sampai menu Minggu mengizinkan kunjungan Yume.
-3. Jangan melakukan 12 `kousaku` dan jangan mengejar lima kamera.
-4. Pilih `sinnyu` seperlunya agar menu Minggu menampilkan **`Go see her`**.
-5. Pilih **`Go see her`** ketika bukti belum mencapai `yusuri_goukei > 4`.
-6. Pada event pemeriksaan awal, jangan memenuhi syarat bukti:
+1. Dari New Game, pilih **`Yes`** pada pertanyaan skip; tidak ada pilihan hadiah.
+2. Buat **A1**, lalu **LOAD A1**.
+3. Mainkan beberapa minggu sampai menu Minggu mengizinkan kunjungan Yume.
+4. Jangan melakukan 12 `kousaku` dan jangan mengejar lima kamera.
+5. Pilih `sinnyu` seperlunya agar menu Minggu menampilkan **`Go see her`**.
+6. Pilih **`Go see her`** ketika bukti belum mencapai `yusuri_goukei > 4`.
+7. Pada event pemeriksaan awal, jangan memenuhi syarat bukti:
    - target yang sengaja dibuat adalah `yusuri_goukei <= 4`;
    - jangan memasang lima titik kamera.
-7. Biarkan event berjalan sampai polisi datang.
-8. Ending yang keluar: **BAD END: Mission Failed**.
-9. Jika menu tidak menampilkan `Go see her`, lanjutkan slot biasa tanpa mengaktifkan route Yume, lalu cek lagi pada Minggu berikutnya.
+8. Biarkan event berjalan sampai polisi datang.
+9. Ending yang keluar: **BAD END: Mission Failed**.
+10. Jika menu tidak menampilkan `Go see her`, lanjutkan slot biasa tanpa mengaktifkan route Yume, lalu cek lagi pada Minggu berikutnya.
 
 ### F.3 Bad ending ketiga — Plan Failed
 
 `Plan Failed` tidak dipicu oleh pilihan dialog tertentu, tetapi oleh `Sunday_P_keikaido==9` saat tidur Minggu.
 
-1. **LOAD A1.**
-2. Setiap kali event investigasi memberi pilihan, pilih tindakan yang meneruskan investigasi/inspeksi, bukan `Leave`.
-3. Ketika event barang atau lokasi menaikkan kewaspadaan, biarkan event selesai. Counter `Sunday_P_keikaido` bertambah satu pada event tersebut.
-4. Setelah setiap Minggu, buka **Profile → keikaido** untuk melihat status. Jangan tidur jika belum ingin mencapai angka 9.
-5. Ulangi investigasi sampai profil menunjukkan kewaspadaan lebih dari 8.
-6. Buat save **B-PF-9** sebelum memilih `yasumu`.
-7. Pilih **`yasumu`**.
-8. Saat source membaca `Sunday_P_keikaido==9`, game langsung memanggil **BAD END: Plan Failed**.
-9. Jika counter meloncat melewati 9 karena event tertentu, LOAD A1 dan ulangi dengan investigasi yang lebih sedikit. Source hanya memanggil ending pada nilai tepat 9.
+1. Dari New Game, pilih **`No`** agar tutorial berjalan.
+2. Pada hadiah prolog pilih **`I'd be happy, my dear Yume!`**.
+3. Di tutorial kamar pilih **`Install camera`**, lalu pasang kamera pada **fire alarm ruang tamu**.
+4. Buat **A1**, lalu **LOAD A1**.
+5. Setiap kali event investigasi memberi pilihan, pilih tindakan yang meneruskan investigasi/inspeksi, bukan `Leave`.
+6. Ketika event barang atau lokasi menaikkan kewaspadaan, biarkan event selesai. Counter `Sunday_P_keikaido` bertambah satu pada event tersebut.
+7. Setelah setiap Minggu, buka **Profile → keikaido** untuk melihat status. Jangan tidur jika belum ingin mencapai angka 9.
+8. Ulangi investigasi sampai profil menunjukkan kewaspadaan lebih dari 8.
+9. Buat save **B-PF-9** sebelum memilih `yasumu`.
+10. Pilih **`yasumu`**.
+11. Saat source membaca `Sunday_P_keikaido==9`, game langsung memanggil **BAD END: Plan Failed**.
+12. Jika counter meloncat melewati 9 karena event tertentu, LOAD A1 dan ulangi dengan investigasi yang lebih sedikit. Source hanya memanggil ending pada nilai tepat 9.
 
 ### F.4 Bad ending keempat — Plan Failed 2
 
 Ending ini adalah cabang lanjutan, bukan ending awal biasa.
 
-1. **LOAD A1.**
-2. Ikuti persiapan Subjugation pada F.6 sampai route sudah aktif.
-3. Lanjutkan event sampai cabang tambahan `tuika_K_R` muncul.
-4. Buat save **B-PF2** sebelum memasuki cabang tambahan.
-5. Saat Konno menegur dan pilihan cabang muncul, pilih jawaban yang membuat konflik berlanjut dan polisi dipanggil. Jangan memilih jawaban damai/meninggalkan lokasi.
-6. Biarkan percakapan selesai sampai polisi masuk.
-7. Ending yang keluar: **BAD END: Plan Failed 2**.
-8. LOAD A1 untuk memulai route ending lain.
+1. Dari New Game, pilih **`No`**.
+2. Pilih hadiah **`I'd be happy, my dear Yume!`**.
+3. Pasang kamera tutorial pada **fire alarm ruang tamu**.
+4. Buat **A1**, lalu **LOAD A1**.
+5. Ikuti persiapan Subjugation pada F.6 sampai route sudah aktif.
+6. Lanjutkan event sampai cabang tambahan `tuika_K_R` muncul.
+7. Buat save **B-PF2** sebelum memasuki cabang tambahan.
+8. Saat Konno menegur dan pilihan cabang muncul, pilih jawaban yang membuat konflik berlanjut dan polisi dipanggil. Jangan memilih jawaban damai/meninggalkan lokasi.
+9. Biarkan percakapan selesai sampai polisi masuk.
+10. Ending yang keluar: **BAD END: Plan Failed 2**.
+11. LOAD A1 untuk memulai route ending lain.
 
 ### F.5 Konno End — satu route bersih penuh
 
@@ -1172,11 +1210,13 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
 
 #### April
 
-1. **LOAD A1.**
-2. Senin–Jumat gunakan kombinasi `sansaku`, `kousatu`, dan `yasumu`; jangan memilih `Go see her`.
-3. Saat event Konno April muncul, biarkan event selesai.
-4. Hasil event: `konno_4gatu += 1`, `konno_koukando += 1`.
-5. Buat save **K0** setelah event April.
+1. Dari New Game, pilih **`Yes`** untuk melewati prolog/tutorial.
+2. Tidak ada pilihan jawaban hadiah karena prolog dilewati.
+3. Buat **A1**, lalu **LOAD A1**.
+4. Senin–Jumat gunakan kombinasi `sansaku`, `kousatu`, dan `yasumu`; jangan memilih `Go see her`.
+5. Saat event Konno April muncul, biarkan event selesai.
+6. Hasil event: `konno_4gatu += 1`, `konno_koukando += 1`.
+7. Buat save **K0** setelah event April.
 
 #### Mei
 
@@ -1230,28 +1270,30 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
 
 #### Persiapan harian
 
-1. **LOAD A1.**
-2. Sampai kamera cukup, pilih `kousaku` total **12 kali**:
+1. Dari New Game, pilih **`Yes`** untuk melewati prolog/tutorial.
+2. Tidak ada pilihan hadiah; kamera fire alarm awal otomatis aktif.
+3. Buat **A1**, lalu **LOAD A1**.
+4. Sampai kamera cukup, pilih `kousaku` total **12 kali**:
    - 2 kali → kamera tambahan pertama;
    - 3 kali → kamera tambahan kedua;
    - 3 kali → kamera tambahan ketiga;
    - 4 kali → kamera tambahan keempat.
-3. Saat memilih `sinnyu`, pasang kamera dengan urutan:
+5. Saat memilih `sinnyu`, pasang kamera dengan urutan:
    - Living room → **Tablet**;
    - Living room → **Alarm clock**;
    - Changing room → **Fire alarm**;
    - Bathroom → **Light**;
    - titik kelima yang belum aktif: **Bathroom → Water heater/tub** atau **Toilet → Toilet bowl**.
-4. Setiap pemasangan mengurangi:
+6. Setiap pemasangan mengurangi:
    - `com -= 1`;
    - `koudou -= 1`.
-5. Jangan memasang kamera di titik yang sudah aktif.
-6. Target sebelum route:
+7. Jangan memasang kamera di titik yang sudah aktif.
+8. Target sebelum route:
    - lima kamera aktif;
    - `yusuri_goukei > 4`;
    - `route_jyunai=0`;
    - `route_ryoujyoku=0`.
-7. Buat save **R0 — five evidence cameras**.
+9. Buat save **R0 — five evidence cameras**.
 
 #### Membuka route
 
@@ -1290,33 +1332,36 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
 
 ### F.7 Pure Love gelap — J_ninsin tetap nol
 
-1. **LOAD A1.**
-2. Jalankan kalender hubungan Yume sampai syarat:
+1. Dari New Game, pilih **`No`** agar prolog berjalan penuh.
+2. Pada hadiah Yume pilih **`If it is something simple, I don't want it.`**
+3. Di tutorial kamar pilih **`Install camera`**, lalu pasang kamera pada **fire alarm ruang tamu**.
+4. Buat **A1**, lalu **LOAD A1**.
+5. Jalankan kalender hubungan Yume sampai syarat:
    - `Sunday_P_koukando > 8`;
    - `Sunday_P_yuisei >= 10`;
    - `route_jyunai=0` sebelum confession.
-3. Pilihan romance:
+6. Pilihan romance:
    - April: **`Don't let 'em get to you.`**
    - Mei: **`Be careful from now on.`**
    - Juni: **`Do you like meat?`**
    - Juli: **`Just call me if you're ever in trouble`**
    - Agustus: **`You've got wonderful parents.`**
    - September: **`It's dangerous if your fans show up though.`**
-4. Buat save **P0 — before Yume confession**.
-5. Selesaikan confession sampai `route_jyunai=1`.
-6. Buat save **J-DARK-1** sebelum scene J1.
-7. Pada J1, J2, dan J3:
+7. Buat save **P0 — before Yume confession**.
+8. Selesaikan confession sampai `route_jyunai=1`.
+9. Buat save **J-DARK-1** sebelum scene J1.
+10. Pada J1, J2, dan J3:
    - boleh memakai `Conversation`, `Touch`, dan `Kiss`;
    - saat finish pilih **`Outside/Sotodasi`**, atau akhiri tanpa `Inside`;
    - jangan memilih `Inside/Nakadasi`.
-8. Pastikan akhir scene tetap **`J_ninsin=0`**.
-9. Buat save **J-DARK-END** sebelum `EV_jyunaiEND`.
-10. Lanjutkan perhitungan ending.
-11. Hasil: **PURE LOVE END: Shrouded in Darkness**.
+11. Pastikan akhir scene tetap **`J_ninsin=0`**.
+12. Buat save **J-DARK-END** sebelum `EV_jyunaiEND`.
+13. Lanjutkan perhitungan ending.
+14. Hasil: **PURE LOVE END: Shrouded in Darkness**.
 
 ### F.8 Pure Love positif/True — route terakhir
 
-1. **LOAD P0**, bukan save Pure Love gelap.
+1. **LOAD P0**, bukan save Pure Love gelap. P0 dibuat setelah prolog **`No`** dan jawaban **`You didn't have to!`**.
 2. Selesaikan confession Yume sampai `route_jyunai=1`.
 3. Buat tiga save:
    - **J1-START**
@@ -1342,7 +1387,7 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
 
 #### Marriage dari Pure Love
 
-1. **LOAD J-POS-END** atau save setelah Pure Love positif.
+1. **LOAD J-POS-END** atau save setelah Pure Love positif. Prolog tidak diulang pada load ini.
 2. Pastikan `Sunday_P_yuisei > 9`.
 3. Saat `tuika_y_JH.ks` terbuka, buat save **M-JH-START**.
 4. Ikuti event hingga `tuika_y_JH.ks` mencapai label `END`.
@@ -1351,7 +1396,7 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
 
 #### Marriage dari Subjugation
 
-1. **LOAD save Subjugation End** setelah `Sunday_P_yuisei > 8`.
+1. **LOAD save Subjugation End** setelah `Sunday_P_yuisei > 8`. Prolog tidak diulang pada load ini; gunakan save Subjugation dari F.6.
 2. Buat save **M-RH-START** sebelum event tambahan.
 3. Saat `tuika_y_RH.ks` terbuka, ikuti event sampai label `END`.
 4. Hasil: **MARRIAGE END: The Ideal Future**.
