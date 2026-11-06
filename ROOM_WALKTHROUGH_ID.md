@@ -1191,7 +1191,10 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
 5. Setelah lima slot selesai, pada Minggu pilih **`Save`**, lalu **`Rest`** untuk memajukan kalender.
 6. Ulangi jadwal lima `Rest` + Minggu `Save`/`Rest` sampai kalender memasuki **Juli**, yaitu saat `R_month > 12`.
 7. Jangan memulai route Yume selama kalender berjalan:
-   - jika event otomatis muncul, biarkan event selesai;
+   - event awal April hanya dialog otomatis; tidak ada tombol jawaban;
+   - event pertemuan Konno juga hanya dialog otomatis; tidak ada tombol jawaban;
+   - event telepon Yume juga hanya dialog otomatis; tidak ada tombol jawaban;
+   - jika event April **`Don't let 'em get to you.`** muncul, pilih **`Let's not talk here. Let's talk in your room?`** bila ingin menaikkan kewaspadaan. Pilihan ini tidak langsung mengaktifkan route Yume, tetapi counter kewaspadaan naik 1.
    - jangan memilih dialog atau tindakan yang memulai confession Yume;
    - jangan memilih **`Go see her`** sebelum bukti siap.
 8. Pada Minggu pertama ketika tombol kunjungan muncul, pilih **`Go see her`**.
@@ -1216,7 +1219,7 @@ Gunakan pola yang sama pada setiap baris. Angka bulan mengikuti source: `R_month
 | Juni 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu sampai kalender melewati `R_month=12` |
 | Juli minggu pertama | `Rest, Rest, Rest, Rest, Rest` | Saat tombol muncul, pilih `Go see her` | Masuk event Mission Failed |
 
-**Catatan:** event utama otomatis pada awal/akhir bulan tetap boleh muncul. Jangan mengganti jadwal hanya karena ada dialog otomatis; biarkan event selesai, lalu lanjutkan `Rest`. Bila tombol belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan mengisi kekurangan dengan `Sneak in`, karena itu dapat memicu `EV_BAD02` pada kunjungan ketiga.
+**Catatan dialog:** “dialog otomatis” berarti teks/percakapan berjalan sendiri dan tidak perlu memilih apa pun. Pada empat minggu awal, event utama April tidak meminta jawaban tombol; cukup biarkan event selesai. Jika event romance April dengan tiga pilihan muncul, pilih **`Let's not talk here. Let's talk in your room?`** untuk menaikkan `Sunday_P_keikaido`, lalu lanjutkan jadwal. Bila tombol `Go see her` belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan mengisi kekurangan dengan `Sneak in`, karena itu dapat memicu `EV_BAD02` pada kunjungan ketiga.
 
 ### F.3 Bad ending ketiga — Plan Failed
 
