@@ -1181,7 +1181,7 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
 
 1. Dari New Game, pilih **`Yes`** pada pertanyaan skip; tidak ada pilihan hadiah.
 2. Buat **A1**, lalu **LOAD A1**.
-3. Untuk route ini, jangan pilih **`Sneak in`**, jangan pilih **`Search`**, dan jangan pilih **`Craft / Work`**. Kita sengaja membiarkan bukti tetap kurang.
+3. Jalur paling singkat adalah tidak memilih **`Sneak in`**, **`Search`**, atau **`Craft / Work`**. Jika ingin membuka pilihan Juni **`Do you like meat?`**, gunakan cabang opsional: sekali saja pilih **`Sneak in`** → **`Search`**, klik **wardrobe/lemari** tiga kali sampai catatan `Reward to myself: MEAT!!` muncul, lalu pilih **`Home`**. Ini membuka `Sunday_P_pro_15` tanpa memasang kamera dan tanpa menambah `yusuri_goukei`; setelah itu kembali ke jadwal `Rest`.
 4. Setiap minggu normal harus diisi lima slot:
    - **Senin:** `Rest`
    - **Selasa:** `Rest`
@@ -1200,7 +1200,7 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
    - **Event romance Mei `5gatu` — insiden klien:** ada pilihan. Untuk F.2 pilih **`Be careful from now on.`** (`Sunday_P_koukando += 1`) atau pilihan lain; pilihan ini tidak mengubah `yusuri_goukei`. Pilihan yang disarankan menjaga hubungan tanpa menaikkan kewaspadaan.
    - **Event Juni `6_1` — acara TV pagi:** otomatis; Yume bercerita bahwa ia mulai tampil rutin di televisi. Tidak ada pilihan tombol.
    - **Event Juni `6_2` — Konno mengantar Yume pulang:** otomatis; Konno menyinggung keamanan gedung dan kemungkinan landlord dipanggil ke kamar. Tidak ada pilihan tombol.
-   - **Event romance Juni `6gatu` — rekomendasi makanan:** ada pilihan. Pilih **`Do you like meat?`** bila ingin menambah hubungan dan kemurnian; untuk F.2 pilihan ini tidak memengaruhi bukti kamera dan tidak membuka route.
+   - **Event romance Juni `6gatu` — rekomendasi makanan:** pilihan **`Do you like meat?`** tidak langsung tersedia. Pilihan itu baru muncul setelah flag profil `Sunday_P_pro_15` terbuka. Untuk membukanya, saat **`Sneak in` → `Search`**, klik/selidiki **lemari pakaian (wardrobe)** sebanyak tiga kali; interaksi ketiga menampilkan catatan `Reward to myself: MEAT!!` dan membuka profil tersebut. Setelah itu, pada event Juni pilih **`Do you like meat?`**. Jika belum melakukan langkah lemari ini, game hanya menampilkan dua pilihan lain.
    - **Event Juni `6_3` — telepon Yume dengan ayahnya:** otomatis; Yume membicarakan acara TV dan aktor yang ia kenal. Tidak ada pilihan tombol.
    - jangan memilih dialog atau tindakan yang memulai confession Yume;
    - jangan memilih **`Go see her`** sebelum bukti siap.
@@ -1208,7 +1208,7 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
 9. Karena tidak pernah memasang lima kamera, bukti yang terbaca tetap kurang dari syarat route:
    - target gagal: `yusuri_goukei <= 4`;
    - jangan memasang kamera tambahan;
-   - jangan pilih **`Install camera`** atau **`Search`** untuk mengumpulkan bukti.
+   - jangan pilih **`Install camera`** atau gunakan **`Search`** untuk memasang/membaca kamera; cabang Search opsional untuk wardrobe di langkah 3 aman karena hanya membuka flag profil.
 10. Pada event pemeriksaan awal, jangan memenuhi syarat bukti:
    - target yang sengaja dibuat adalah `yusuri_goukei <= 4`;
    - jangan memasang lima titik kamera.
@@ -1223,10 +1223,10 @@ Gunakan pola yang sama pada setiap baris. Angka bulan mengikuti source: `R_month
 |---|---|---|---|
 | April 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tidak ada kamera/bukti |
 | Mei 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu event `5_1`, `5_2`, dan romance Mei; pilih `Be careful from now on.` jika pilihan muncul |
-| Juni 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu event `6_1`, `6_2`, romance `6gatu`, dan `6_3`; pilih `Do you like meat?` jika muncul |
+| Juni 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu event `6_1`, `6_2`, romance `6gatu`, dan `6_3`; `Do you like meat?` hanya muncul jika `Sunday_P_pro_15` sudah terbuka |
 | Juli minggu pertama | `Rest, Rest, Rest, Rest, Rest` | Saat tombol muncul, pilih `Go see her` | Masuk event Mission Failed |
 
-**Catatan dialog:** “dialog otomatis” berarti teks/percakapan berjalan sendiri dan tidak perlu memilih apa pun. Event romance April, Mei, dan Juni memiliki tombol pilihan; event utama/telepon Juni tidak. Untuk F.2, gunakan **`Let's not talk here. Let's talk in your room?`** pada April, **`Be careful from now on.`** pada Mei, dan **`Do you like meat?`** pada Juni bila muncul. Pilihan-pilihan ini tidak menambah bukti kamera. Bila tombol `Go see her` belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan mengisi kekurangan dengan `Sneak in`, karena itu dapat memicu `EV_BAD02` pada kunjungan ketiga.
+**Catatan dialog:** “dialog otomatis” berarti teks/percakapan berjalan sendiri dan tidak perlu memilih apa pun. Event romance April, Mei, dan Juni memiliki tombol pilihan; event utama/telepon Juni tidak. Untuk F.2, gunakan **`Let's not talk here. Let's talk in your room?`** pada April dan **`Be careful from now on.`** pada Mei. Pada Juni, **`Do you like meat?`** hanya tersedia jika sebelumnya sudah membuka `Sunday_P_pro_15` dengan **`Sneak in` → `Search` → wardrobe/lemari tiga kali**; jika belum, pilih salah satu dari dua pilihan yang muncul. Interaksi wardrobe ini tidak memasang kamera dan tidak menambah `yusuri_goukei`. Bila tombol `Go see her` belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan melakukan `Sneak in` ketiga kalinya, karena itu dapat memicu `EV_BAD02`.
 
 ### F.3 Bad ending ketiga — Plan Failed
 
