@@ -1092,6 +1092,8 @@ Bagian ini sengaja mengulang beberapa langkah. Ikuti dari atas ke bawah. Setiap 
 
 **Aturan penamaan:** langkah yang harus diklik memakai label tombol game, misalnya **`Sneak in`**, **`Search`**, **`Home`**, **`Craft / Work`**, **`Observe / Think`**, **`Go out / Investigate`**, dan **`Rest`**. Nama seperti `sinnyu`, `kousaku`, atau `yasumu` hanya nama variabel/source dan dicantumkan bila membantu membaca counter.
 
+**Aturan plan mingguan:** pada kalender normal, isi semua **5 slot Senin–Jumat**. Jika route hanya membutuhkan 3 tindakan, isi 2 slot yang tersisa dengan **`Rest`**. Jangan menganggap minggu selesai setelah 3 pilihan; kode baru mengakhiri plan saat slot Jumat/slot ke-5 terisi. Setelah `route_jyunai` atau `route_ryoujyoku` aktif, menu dapat melewati pengisian lima slot karena dispatcher route mengambil alih.
+
 ### F.0 Setup save sebelum mulai
 
 1. Mulai New Game.
