@@ -563,7 +563,7 @@ Bagian ini menjawab pertanyaan “setiap hari harus melakukan apa”. Jadwal di 
 | `KAT` | `kousatu` | Menaikkan level observasi dan membuka titik kamera |
 | `SIN` | `sinnyu` | Masuk ke kamar Yume dan memasang kamera |
 | `SAN` | `sansaku` | Pergi ke lokasi luar; memicu event lokasi dan event Konno |
-| `REST` | `yasumu` | Mengisi slot tanpa menambah perangkat; dipakai saat resource belum siap |
+| `yasumu` | `yasumu` | Mengisi slot tanpa menambah perangkat; dipakai saat resource belum siap |
 
 `R_month` bukan nomor bulan kalender biasa: `1–4` adalah April, `5–8` Mei, `9–12` Juni, `13–16` Juli, `17–20` Agustus, `21–24` September, dan `25–28` Oktober. Nilai `week` adalah posisi slot internal dalam siklus; event pada `week == 5` berjalan setelah slot Jumat sebelum menu Minggu.
 
@@ -697,3 +697,174 @@ Begitu `route_ryoujyoku >= 1`, menu aktivitas mingguan juga dilewati oleh dispat
 - [ ] Save dibuat sebelum event route atau scene interaktif.
 - [ ] Setelah Jumat: event akhir minggu diselesaikan.
 - [ ] Minggu: `Save` lalu `yasumu`.
+
+---
+
+## Appendix D — Urutan pemasangan kamera dan resep counter siap pakai
+
+Bagian ini adalah jawaban langsung untuk pertanyaan “kalau `sinnyu`, pasang di mana?”. Semua titik di bawah berasal dari menu `syu_room_week_sinnyu_haiti*.ks`; istilah lokasi dibuat deskriptif agar mudah dicari di layar.
+
+### D.1 Angka awal dan biaya yang benar
+
+Setelah prolog dan masuk ke sistem kamar:
+
+- `com = 3` kamera siap pakai.
+- `koudou = 3` aksi infiltrasi untuk satu kunjungan.
+- Satu pemasangan kamera mengurangi **1 `com` dan 1 `koudou`**.
+- Aksi `sinnyu` menambah `sinnyu_count` **+1**, walaupun pemain tidak memasang kamera.
+- Jika `koudou == 0`, pilih `Leave`/`Return`; jangan mencoba mencari titik lain.
+- Kamera awal di ruang tamu pada titik **fire alarm** sudah aktif bila prolog tutorial dijalankan melalui `Yes`. Bila memilih skip yang tidak menginisialisasi titik itu, pasang kamera tersebut pada infiltrasi pertama.
+
+### D.2 Daftar semua titik kamera
+
+| Nomor | Area | Titik yang diklik | Flag utama | Kapan dipakai |
+|---:|---|---|---|---|
+| 1 | Living room | Fire alarm/light dekat plafon | `setti_r_kasai_on` | Kamera awal; pasang jika belum aktif |
+| 2 | Living room | Tablet | `setti_r_tabu_on` | Bukaan tambahan; juga memicu event ganti pakaian |
+| 3 | Living room | Alarm clock | `setti_r_tokei_on` | Bukaan tambahan; memicu event ganti pakaian |
+| 4 | Changing room | Fire alarm | flag event `EV_tousatu_datui_kasai` | Bukti ruang ganti |
+| 5 | Changing room | Scale/weight scale | flag event `EV_tousatu_datui_taijyu` | Bukti ruang ganti tambahan |
+| 6 | Bathroom | Light | `EV_tousatu_syawa_raito` | Bukti shower |
+| 7 | Bathroom | Water heater/tub control | `EV_tousatu_syawa_yuwakasi` | Bukti bath |
+| 8 | Toilet | Toilet bowl | `EV_tousatu_osikko_benki` | Bukti toilet |
+| 9 | Toilet | Door | `EV_tousatu_osikko_doa` | Bukti toilet |
+| 10 | Toilet | Ventilation | `EV_tousatu_osikko_kanki` | Bukti toilet |
+
+**Cara memasang:** pilih `sinnyu` → `Install device`/`Placement` → masuk ke ruangan dengan tombol `Changing room`, `Bathroom`, atau `Toilet` → klik titik yang belum berwarna → pilih **`Install camera`**. Jangan pilih `Stop` setelah membuka layar konfirmasi bila memang ingin menghabiskan satu kamera; `Stop` membatalkan pemasangan dan tidak mengurangi counter.
+
+### D.3 Urutan kamera yang direkomendasikan untuk Subjugation
+
+Subjugation tahap pertama membutuhkan `yusuri_goukei > 4`, yaitu minimal **5 bukti kamera** yang diputar dalam event pemerasan. Gunakan urutan ini, bukan memilih titik secara acak:
+
+1. **Living room — Fire alarm**: sudah aktif atau pasang pertama.
+2. **Living room — Tablet**.
+3. **Living room — Alarm clock**.
+4. **Changing room — Fire alarm**.
+5. **Bathroom — Light**.
+
+Urutan tersebut memberikan lima sumber bukti yang berbeda dan menyisakan titik lain untuk replay/CG. Jika salah satu titik sudah aktif, lanjutkan ke nomor berikutnya; target akhirnya tetap **5 titik aktif** dan `yusuri_goukei > 4`.
+
+### D.4 Cara mendapatkan empat kamera tambahan tanpa menghitung sendiri
+
+Mulai dari `com=3`. Untuk memperoleh empat kamera tambahan, pilih `kousaku` tepat **12 kali** dengan urutan progres berikut:
+
+| Kamera tambahan | Pilihan `kousaku` yang diperlukan | Hasil |
+|---:|---:|---|
+| +1 | 2 kali | Crafting Level 2; `com` bertambah 1 |
+| +2 | 3 kali | Crafting Level 3; `com` bertambah 1 |
+| +3 | 3 kali | Crafting Level 4; `com` bertambah 1 |
+| +4 | 4 kali | Crafting Level 5; `com` bertambah 1 |
+
+Total **12 kali `kousaku`** menghasilkan `com=7` sebelum pemasangan. Pasang lima kamera target Subjugation dengan lima infiltrasi/kunjungan sesuai kebutuhan. Jangan menggunakan `kousaku` tambahan di tengah urutan jika ingin mengikuti counter ini persis.
+
+### D.5 Cara memperoleh kapasitas aksi infiltrasi
+
+Awal permainan memberi `koudou=3`, sehingga satu kunjungan dapat memasang maksimal tiga kamera. Untuk resep lima kamera:
+
+1. Infiltrasi 1: pasang kamera 1–3; biaya `com -3`, `koudou -3`.
+2. Infiltrasi 2: pasang kamera 4–5; biaya `com -2`, `koudou -2`.
+3. Bila layar tidak memberi dua aksi pada infiltrasi kedua, pilih `Leave`, lalu lakukan `sinnyu` berikutnya; jangan mengulang pemasangan pada titik yang sudah aktif.
+4. Setelah setiap `sinnyu`, game menaikkan `sinnyu_count` satu kali. Target aman sebelum membuka route adalah **`sinnyu_count >= 5`** dan lima titik bukti aktif.
+
+### D.6 Resep harian Pure Love — dari awal sampai route entry
+
+Gunakan resep ini jika targetnya **TRUE END: Happiness Given Form** atau **PURE LOVE END: Shrouded in Darkness**. Perbedaannya baru dibuat pada scene Pure Love; kalender awalnya sama.
+
+| Hari/slot | Pilih | Detail wajib |
+|---|---|---|
+| Hari 1 | `kousaku` | Mulai crafting Level 1 |
+| Hari 2 | `kousaku` | Selesaikan Level 2; `com` bertambah 1 |
+| Hari 3 | `kousatu` | Buka titik observasi yang tersedia |
+| Hari 4 | `sansaku` | `Go to the Shopping District`; pilih dialog affection jika muncul |
+| Hari 5 | `sinnyu` | Pasang **Living room — Tablet** bila belum aktif; jika `com=0`, `Leave` |
+| Minggu 1 | `Save` lalu `yasumu` | Pastikan alert tetap di bawah 9 |
+| Hari 6–10 | `kousaku, kousaku, kousatu, sansaku, sinnyu` | Ulangi; pada `sinnyu` pasang **Living room — Alarm clock** |
+| Minggu 2 | `Save` lalu `yasumu` | Pilih event romance bila dipanggil |
+| Hari 11–15 | `kousaku, kousatu, sansaku, sansaku, yasumu` | Fokus event hubungan; jangan memilih opsi yang menaikkan alert |
+| Minggu 3 | `Save` lalu `yasumu` | Romance Mei: **`Be careful from now on.`** |
+| Hari 16–20 | `kousaku, kousatu, sansaku, sinnyu, yasumu` | Jika ada kamera, pasang **Changing room — Fire alarm** |
+| Minggu 4 | `Save` lalu `yasumu` | Romance Juni: **`Do you like meat?`** |
+| Hari 21–25 | `kousaku, kousatu, sansaku, sansaku, yasumu` | Romance Juli: **`Just call me if you're ever in trouble`** |
+| Minggu 5 | `Save` lalu `yasumu` | Jangan memilih `Assault her` |
+| Hari 26–30 | `kousaku, kousatu, sansaku, sinnyu, yasumu` | Romance Agustus: **`You've got wonderful parents.`** |
+| Minggu 6 | `Save` lalu `yasumu` | Target `Sunday_P_koukando > 5` |
+| Hari 31–35 | `kousaku, kousatu, sansaku, sansaku, yasumu` | Romance September: **`It's dangerous if your fans show up though.`** |
+| Minggu 7 | `Save` lalu `yasumu` | Pastikan `Sunday_P_koukando > 8` |
+| Hari 36–40 | `kousaku, kousatu, sansaku, sinnyu, yasumu` | Jangan mengaktifkan route Konno |
+| Minggu 8 | `Save` lalu `yasumu` | Saat confession Yume muncul, lanjutkan sampai `route_jyunai=1` |
+
+Jika sebuah event wajib mengambil satu slot, event tersebut menggantikan aktivitas pada hari itu; jangan memilih aktivitas tambahan setelah event. Setelah `route_jyunai=1`, kalender normal berhenti dan game otomatis memanggil tahap Pure Love.
+
+### D.7 Counter ending Pure Love yang sudah dihitung
+
+Untuk **TRUE END**, target dan tindakan scene harus seperti berikut:
+
+| Tahap | Hasil scene | Tambahan `J_ninsin` | Total minimal berjalan |
+|---:|---|---:|---:|
+| J1 | Hasil `finish inside` biasa | +1 | 1 |
+| J1 | Hasil `finish inside` tinggi | +2 | 2 |
+| J2 | Hasil `finish inside` biasa | +1 | 3 |
+| J2 | Hasil `finish inside` tinggi | +2 | 4 |
+| J3 | Hasil `finish inside` biasa | +1 | 5 |
+| J3 | Hasil `finish inside` tinggi | +2 | 6 |
+
+Karena source juga dapat memberi tambahan pada cabang scene tertentu, jangan berhenti pada enam poin tabel. Untuk target aman **`J_ninsin >= 10`**, ulangi scene dengan save sebelum `finish`, pilih cabang internal tertinggi, dan pastikan counter final yang terlihat di state mencapai 10 sebelum `EV_jyunaiEND`. Tidak ada kalkulasi manual lain: **0 = Shrouded**, **10 atau lebih = True**; nilai 1–9 adalah hasil RNG.
+
+### D.8 Resep harian Subjugation — dari awal sampai route entry
+
+Gunakan urutan ini jika targetnya salah satu dari **REVENGE**, **CONFINED**, atau **SUBJUGATION**. Aktivitas dibagi menjadi blok agar jumlahnya eksplisit.
+
+| Blok | Hari/slot | Pilih | Hasil yang harus tercapai |
+|---|---|---|---|
+| R1 | Hari 1–5 | `kousaku, kousaku, kousatu, sinnyu, yasumu` | Crafting Level 2 dan kamera Tablet aktif |
+| R2 | Hari 6–10 | `kousaku, kousaku, kousaku, sansaku, sinnyu` | Crafting Level 3; kamera Alarm clock aktif |
+| R3 | Hari 11–15 | `kousatu, kousatu, kousatu, sinnyu, yasumu` | Buka akses titik kamar mandi |
+| R4 | Hari 16–20 | `kousaku, kousaku, kousatu, sinnyu, yasumu` | Crafting Level 4; kamera Changing room aktif |
+| R5 | Hari 21–25 | `kousaku, kousaku, kousaku, kousaku, sinnyu` | Crafting Level 5; kamera Bathroom light aktif |
+| R6 | Hari 26–30 | `sinnyu, yasumu, sansaku, yasumu, yasumu` | Minimal lima titik bukti dan `sinnyu_count >= 5` |
+| Route entry | Minggu setelah R6 | Menu `Go see her` | Pilih `Go see her`; jangan `Stop` |
+
+Pada setiap baris `sinnyu`, pasang kamera berikutnya dari daftar D.3. Jika `com` belum cukup, ganti hari itu dengan `kousaku` sampai tabel D.4 selesai; jumlah total yang harus dicapai tetap **12 kali `kousaku`** sebelum lima kamera dipasang.
+
+### D.9 Counter enam tahap Subjugation dan pilihan ending
+
+Setelah memilih `Go see her`, tidak perlu lagi memilih `KOS/KAT/SIN/SAN`. Gunakan urutan tetap berikut:
+
+1. **Tahap 1:** selesaikan pemutaran minimal lima bukti (`yusuri_goukei > 4`).
+2. **Tahap 2:** setelah kembali ke Minggu, pilih `yasumu`.
+3. **Tahap 3:** ulangi event otomatis, lalu `yasumu`.
+4. **Tahap 4:** ulangi event otomatis, lalu `yasumu`.
+5. **Tahap 5:** ulangi event otomatis, lalu `yasumu`.
+6. **Tahap 6:** buat save sebelum hasil scene; tahap ini memiliki cabang `R6_kizetu`.
+7. Pada setiap hasil scene, flag kemahiran yang dibaca game adalah `H_BAD_jyukuren` dan `H_R1_jyukuren` sampai `H_R6_jyukuren`.
+8. Pilih layar hasil yang mengatur semua flag ke `-1` untuk **REVENGE**.
+9. Pilih layar hasil yang mengatur flag ke `0` atau `1` untuk **CONFINED**.
+10. Pilih layar hasil yang mengatur flag ke `2` untuk **SUBJUGATION**.
+
+Dengan demikian, angka yang harus dicapai sudah eksplisit: **5 bukti kamera, 12 aksi crafting untuk empat kamera tambahan, `yusuri_goukei > 4`, dan enam tahap route**. Pemain tidak perlu menebak jumlahnya.
+
+### D.10 Resep harian Konno
+
+Untuk **KONNO END**, jangan memilih `Go see her` pada menu Subjugation dan jangan menyelesaikan confession Yume.
+
+1. Sampai event Mei: setiap minggu pilih `sansaku` ke **Shopping District**; pilih salah satu dari dua jawaban affection:
+   - `Haha, yes I'm so very bored. My apologies.`
+   - `Aren't you busy with your studies?`
+2. Event Agustus: `sansaku` ke **Electronics Shops**, lalu pilih `What, feeling shy?`.
+3. Event September: `sansaku` ke **`Office`**; biarkan event menginap berjalan.
+4. Event Oktober: saat `konno_koukando >= 6`, pilih `Would you like to come in for a bit?`.
+5. Pastikan `konno_10gatu=1` dan `konno_koukando` minimal 9 bila ingin event telepon ucapan selamat.
+6. Simpan, pilih `yasumu`, lalu lanjut sampai `R_month=29`; game memanggil **KONNO END: A Different Kind of Happiness**.
+
+### D.11 Resep ending buruk tanpa menghitung counter
+
+| Target | Urutan pasti |
+|---|---|
+| **BAD END: Plan Failed** | Jangan memilih route apa pun; setiap Minggu `Save` → `yasumu`; saat `Sunday_P_keikaido==9`, tidur sekali atau lanjut tanpa route sampai `R_month=29` |
+| **BAD END: Irresistible Desires** | Pada event tertangkap di kamar, pilih `Assault her` |
+| **BAD END: Mission Failed** | Mulai Subjugation dengan lima bukti atau kurang, atau gagal pada pemeriksaan event awal sehingga polisi dipanggil |
+| **BAD END: Plan Failed 2** | Dari cabang Subjugation/Konno, saat event `tuika_K_R.ks` muncul pilih `Well, whatever! Time to head in.`; lanjutkan scene sampai polisi dipanggil |
+
+### D.12 Batasan yang harus ditulis apa adanya
+
+Game tidak memiliki satu “nomor hari” global yang ditampilkan kepada pemain. Source menyimpan `R_month` dan `week`, lalu setiap aktivitas menaikkan `week` sendiri. Karena itu tabel di atas memakai **slot hari kerja** dan memberi counter final yang harus terlihat, bukan mengarang tanggal kalender. Event wajib dapat menggantikan slot aktivitas; jika itu terjadi, ikuti event terlebih dahulu dan lanjut ke baris berikutnya.
