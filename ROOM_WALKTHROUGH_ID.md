@@ -871,3 +871,215 @@ Untuk **KONNO END**, jangan memilih `Go see her` pada menu Subjugation dan janga
 ### D.12 Batasan yang harus ditulis apa adanya
 
 Game tidak memiliki satu “nomor hari” global yang ditampilkan kepada pemain. Source menyimpan `R_month` dan `week`, lalu setiap aktivitas menaikkan `week` sendiri. Karena itu tabel di atas memakai **slot hari kerja** dan memberi counter final yang harus terlihat, bukan mengarang tanggal kalender. Event wajib dapat menggantikan slot aktivitas; jika itu terjadi, ikuti event terlebih dahulu dan lanjut ke baris berikutnya.
+
+---
+
+## Appendix E — Flow pemain: urutan ending, save/load, dan tindakan scene
+
+Bagian ini adalah versi paling praktis. Ikuti urutan pengerjaan di bawah agar tidak perlu mengulang dari awal setiap kali mengejar ending baru.
+
+### E.1 Urutan ending paling hemat replay
+
+Kerjakan dalam urutan ini:
+
+1. **Semua bad ending singkat** dari save awal.
+2. **Konno End**, karena route ini membutuhkan kalender sampai Oktober tetapi tidak mengunci scene Pure Love/Subjugation.
+3. **Subjugation End** dan dua variasinya: Revenge lalu Confined lalu Subjugation.
+4. **Pure Love End gelap**.
+5. **Pure Love ending positif/True**, terakhir, karena route Yume mengunci menu aktivitas dan memakai seluruh scene J1–J3.
+6. **Marriage ending** setelah ending dasar yang menjadi prasyaratnya selesai.
+
+Jangan mengerjakan Konno setelah `route_jyunai` atau `route_ryoujyoku` aktif. Dispatcher akan memprioritaskan route tersebut dan event Konno tidak lagi berjalan normal.
+
+### E.2 Slot save yang wajib dibuat
+
+Buat save manual dengan nama berikut:
+
+- **S-00 — Awal prolog:** sebelum memilih hadiah/prolog.
+- **S-01 — Setelah kamera awal:** sebelum aktivitas minggu pertama.
+- **S-02 — Sebelum route Konno:** ketika `konno_koukando` masih bisa dinaikkan dan `route_jyunai=0`, `route_ryoujyoku=0`.
+- **S-03 — Sebelum Go see her:** lima bukti kamera sudah siap, tetapi belum memilih kunjungan.
+- **S-04 — Sebelum hasil Subjugation:** setelah setiap tahap route selesai.
+- **S-05 — Sebelum confession Yume:** `Sunday_P_koukando > 8`, `Sunday_P_yuisei >= 10`.
+- **S-06 — Sebelum scene J1, J2, J3:** buat tiga save terpisah.
+- **S-07 — Sebelum perhitungan ending:** tepat sebelum `EV_jyunaiEND`.
+
+**Aturan load:** setelah satu ending selesai, load save yang disebut di tabel, bukan save otomatis terakhir. Jangan menimpa S-00 sampai S-07.
+
+### E.3 Cara membaca counter scene
+
+Nama tombol di layar mungkin memakai bahasa Inggris, sedangkan nama counter di source memakai bahasa Jepang. Gunakan padanan ini:
+
+| Tombol di layar | Arti praktis | Counter yang terpengaruh |
+|---|---|---|
+| `Conversation` | Ajak bicara | Kemajuan scene/kemahiran internal |
+| `Touch`/`Caress` | Sentuhan/foreplay | `H_zettyou` dan kemajuan kemahiran |
+| `Kiss` | Ciuman | Kemajuan scene; bukan counter ending mandiri |
+| `Slow` | Gerakan pelan | `H_syasei += 1` |
+| `Fast` | Gerakan cepat | `H_syasei += 1` |
+| `Climax` | Orgasme | Mengakhiri satu tahap stimulus |
+| `Inside / Nakadasi` | Hasil internal | `J_ninsin += 1` atau `+2` |
+| `Large amount / Nakadasi Tairyou` | Hasil internal jumlah besar | `J_ninsin += 2` |
+| `Outside / Sotodasi` | Hasil eksternal | Tidak menambah `J_ninsin` |
+| `Leave/End` | Keluar dari scene | Menyelesaikan tahap tanpa bonus tambahan |
+
+**Penting:** `Kiss` tidak otomatis berarti `kiss=1`. Source tidak memakai satu counter “jumlah kiss” untuk ending Pure Love. Yang dibaca ending adalah `J_ninsin`, sedangkan `Kiss`, `Touch`, dan `Conversation` dipakai untuk membangun scene dan kemahiran.
+
+### E.4 Prosedur scene yang sama untuk J1, J2, dan J3
+
+Ikuti bullet ini setiap kali scene J muncul:
+
+1. Saat layar scene terbuka, catat apakah level kemahiran masih **Lv1**, **Lv2**, atau **Lv3**.
+2. Pilih `Conversation` atau `Touch` sekali untuk memulai interaksi.
+3. Pilih `Kiss` atau tindakan foreplay yang tersedia sampai meter reaksi naik.
+4. Pilih `Slow` atau `Fast`; masing-masing menambah satu hitungan `H_syasei`.
+5. Ulangi sampai tombol `Climax`/finish terbuka. Source membuka tombol puncak saat `H_syasei > 9`.
+6. Jangan memilih `Outside/Sotodasi` bila mengejar ending positif.
+7. Pilih `Inside/Nakadasi`.
+8. Jika tersedia cabang **`Large amount/Nakadasi Tairyou`**, pilih itu. Hasilnya `J_ninsin +2`.
+9. Setelah scene selesai, catat total:
+   - J1 selesai: target `J_ninsin=2`.
+   - J2 selesai: target kumulatif `J_ninsin=4`.
+   - J3 selesai: target kumulatif `J_ninsin=6`.
+10. Jika hasil yang keluar hanya `Nakadasi Hutuu`, bonusnya hanya `+1`; jangan mengira itu `+2`.
+
+Tidak ada tombol foreplay tertentu yang terbukti memberi `J_ninsin` langsung. Bonus ditentukan oleh cabang hasil internal di file `H_J1_pisuton.ks`, `H_J2_pisuton.ks`, dan `H_J3_pisuton.ks`.
+
+### E.5 Rute Konno — jadwal harian dan counter
+
+Mulai dari S-01 dan jangan pernah mengaktifkan route Yume/Subjugation.
+
+#### April–Mei
+
+- Setiap slot `sansaku`, pilih lokasi yang memicu event Konno bila tersedia.
+- Saat dialog Konno muncul, pilih jawaban yang bersahabat, bukan jawaban yang memutus percakapan.
+- Target akhir blok Mei: `konno_koukando >= 4`.
+- Minggu terakhir Mei: buat save **K-01**.
+
+#### Agustus
+
+- `sansaku` → **Electronics Shops**.
+- Pilih **`What, feeling shy?`**.
+- Setelah event selesai: cek `konno_koukando` naik satu.
+- Buat save **K-02**.
+
+#### September
+
+- `sansaku` → **Office**.
+- Biarkan event menginap berjalan sampai selesai.
+- Jangan memilih opsi yang membatalkan pertemuan.
+- Target sebelum Oktober: `konno_koukando >= 5`.
+- Buat save **K-03**.
+
+#### Oktober
+
+- Pastikan `konno_koukando >= 6`.
+- Pada confession, pilih **`Would you like to come in for a bit?`**.
+- Pastikan `konno_10gatu=1`.
+- Jika ingin telepon ucapan selamat, pertahankan `Sunday_P_koukando >= 9`.
+- Load K-03 bila confession tidak muncul.
+- Setelah `konno_10gatu=1`, jangan mengaktifkan route Yume.
+- Tidur sampai `R_month=29` → **Konno End**.
+
+### E.6 Rute Subjugation — harian dan tiga hasil
+
+Mulai dari S-01.
+
+#### Persiapan
+
+- `kousaku` 12 kali total untuk memperoleh empat kamera tambahan.
+- `sinnyu` pertama: Living room → Tablet.
+- `sinnyu` kedua: Living room → Alarm clock.
+- `sinnyu` berikutnya: Changing room → Fire alarm.
+- `sinnyu` berikutnya: Bathroom → Light.
+- Titik kelima: gunakan kamera aktif lain yang belum dipasang.
+- Target sebelum route: lima kamera aktif dan `yusuri_goukei > 4`.
+- Buat save **S-03**.
+
+#### Route entry
+
+- Minggu: pilih **`Go see her`**.
+- Jangan memilih `Stop`.
+- Setelah route aktif, menu aktivitas normal berhenti.
+
+#### Hasil route
+
+Buat save sebelum tiap hasil scene:
+
+- **S-04R:** pilih hasil yang membuat flag kemahiran route bernilai `-1` → **Revenge End**.
+- Load S-04R.
+- **S-04C:** pilih hasil yang membuat flag bernilai `0` atau `1` → **Confined End**.
+- Load S-04R.
+- **S-04S:** pilih hasil yang membuat flag bernilai `2` → **Subjugation End**.
+
+Jangan memakai istilah “total exp 6/12/13” sebagai aturan mutlak. Source memakai level hasil dan flag kemahiran per tahap; itulah yang menentukan tiga ending tersebut.
+
+### E.7 Pure Love — jadwal harian, event, dan ending
+
+Mulai dari S-01, lalu ikuti kalender hubungan Yume sampai syarat entry:
+
+- April: pilih **`Don't let 'em get to you.`**
+- Mei: pilih **`Be careful from now on.`**
+- Juni: pilih **`Do you like meat?`**
+- Juli: pilih **`Just call me if you're ever in trouble`**.
+- Agustus: pilih **`You've got wonderful parents.`**
+- September: pilih **`It's dangerous if your fans show up though.`**
+- Minggu terakhir sebelum confession: target `Sunday_P_koukando > 8` dan `Sunday_P_yuisei >= 10`.
+- Buat save **S-05**.
+- Saat confession Yume muncul, lanjutkan event sampai `route_jyunai=1`.
+
+#### J1
+
+- Buat save **J1-START**.
+- `Conversation` → `Touch` → `Kiss`.
+- Pilih `Slow`/`Fast` sampai `H_syasei > 9`.
+- Pilih `Inside`.
+- Pilih `Large amount` jika tombol tersedia.
+- Target setelah scene: `J_ninsin=2`.
+- Buat save **J1-END**.
+
+#### J2
+
+- Buat save **J2-START**.
+- Ulangi urutan `Conversation` → `Touch` → `Kiss` → `Slow/Fast`.
+- Pastikan `H_syasei > 9`.
+- Pilih `Inside` → `Large amount`.
+- Target kumulatif: `J_ninsin=4`.
+- Buat save **J2-END**.
+
+#### J3
+
+- Buat save **J3-START**.
+- Ulangi urutan yang sama.
+- Pastikan `H_syasei > 9`.
+- Pilih `Inside` → `Large amount`.
+- Target kumulatif maksimal: `J_ninsin=6`.
+- Buat save **J3-END**.
+
+#### Pilihan ending
+
+- **Pure Love End: Shrouded in Darkness:** dari J1-START, J2-START, atau J3-START, pilih `Outside` atau akhiri tanpa internal sehingga `J_ninsin=0`.
+- **Pure Love ending positif:** capai `J_ninsin=1–5`; hasil positif hanya 10% dan sisanya kembali ke ending gelap.
+- **Peluang tertinggi:** capai `J_ninsin=6` dengan `Large amount` pada J1, J2, J3; hasil positif 50%.
+- **True End deterministik:** source memerlukan `J_ninsin>=10`, tetapi tiga scene standar hanya memberi maksimal 6. Jangan mengklaim True End pasti tanpa menemukan event tambahan yang benar-benar menambah counter.
+- Sebelum `EV_jyunaiEND`, buat save **S-07**. Load S-07 untuk mengulang RNG 50% tanpa mengulang semua hari.
+
+### E.8 Bad ending — buat dari save tanpa merusak route utama
+
+- **Irresistible Desires:** load save tepat sebelum event tertangkap → pilih **`Assault her`**.
+- **Mission Failed:** load S-03 → mulai `Go see her` dengan bukti kurang dari lima atau gagal event awal.
+- **Plan Failed:** load save sebelum tidur Minggu → biarkan `Sunday_P_keikaido` mencapai 9, lalu tidur.
+- **Plan Failed 2:** load cabang `tuika_K_R.ks` → pilih opsi yang membuat polisi dipanggil.
+
+Setelah setiap bad ending, load kembali save asalnya. Jangan melanjutkan dari bad ending karena route dan counter lanjutan bukan lagi baseline yang bersih.
+
+### E.9 Checklist sebelum menyebut sebuah ending “sudah aman”
+
+- [ ] Save asal route tidak tertimpa.
+- [ ] Semua dialog wajib sudah dipilih.
+- [ ] Counter target sudah dicatat setelah event, bukan diperkirakan.
+- [ ] Kamera yang diperlukan sudah dipasang di lokasi yang benar.
+- [ ] Route lain belum aktif.
+- [ ] Untuk Pure Love: `J_ninsin` dicek sebelum `EV_jyunaiEND`.
+- [ ] Untuk Subjugation: flag hasil sudah cocok dengan `-1`, `0/1`, atau `2`.
+- [ ] Untuk ending RNG: save dibuat tepat sebelum perhitungan ending.
