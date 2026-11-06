@@ -1083,3 +1083,287 @@ Setelah setiap bad ending, load kembali save asalnya. Jangan melanjutkan dari ba
 - [ ] Untuk Pure Love: `J_ninsin` dicek sebelum `EV_jyunaiEND`.
 - [ ] Untuk Subjugation: flag hasil sudah cocok dengan `-1`, `0/1`, atau `2`.
 - [ ] Untuk ending RNG: save dibuat tepat sebelum perhitungan ending.
+
+---
+
+## Appendix F — Walkthrough linear dari awal sampai semua ending
+
+Bagian ini sengaja mengulang beberapa langkah. Ikuti dari atas ke bawah. Setiap kali tertulis **LOAD**, kembali ke save yang disebut; jangan meneruskan dari ending sebelumnya.
+
+### F.0 Setup save sebelum mulai
+
+1. Mulai New Game.
+2. Jalankan prolog sampai menu kamar terbuka.
+3. Jika prolog bertanya pemasangan kamera awal, pilih **`Yes`**.
+4. Buat save:
+   - **A0 — New Game/prolog**
+   - **A1 — Menu minggu pertama**
+5. Semua ending di bawah dimulai dari **A1**, kecuali jika tertulis lain.
+
+Counter awal yang perlu diketahui:
+
+- `R_month=1`
+- `com=3` setelah masuk sistem kamar
+- `koudou=3` saat infiltrasi
+- `Sunday_P_keikaido=0`
+- `route_jyunai=0`
+- `route_ryoujyoku=0`
+
+### F.1 Bad ending pertama — Irresistible Desires
+
+Ini adalah bad ending paling cepat karena cukup memicu `sinnyu_count==3`.
+
+1. **LOAD A1.**
+2. Senin minggu 1: pilih **`sinnyu`**. Tidak perlu memasang kamera.
+3. Selasa minggu 1: pilih **`sinnyu`**. Tidak perlu memasang kamera.
+4. Rabu minggu 1: pilih **`sinnyu`**. Setelah masuk, game memanggil event tertangkap.
+5. Saat muncul dua pilihan:
+   - pilih **`Assault her`**;
+   - jangan pilih `Hide`.
+6. Ending yang keluar: **BAD END: Irresistible Desires**.
+7. Setelah melihat ending, jangan overwrite A1.
+
+### F.2 Bad ending kedua — Mission Failed
+
+Gunakan syarat `Go see her` tanpa bukti yang cukup.
+
+1. **LOAD A1.**
+2. Mainkan beberapa minggu sampai menu Minggu mengizinkan kunjungan Yume.
+3. Jangan melakukan 12 `kousaku` dan jangan mengejar lima kamera.
+4. Pilih `sinnyu` seperlunya agar menu Minggu menampilkan **`Go see her`**.
+5. Pilih **`Go see her`** ketika bukti belum mencapai `yusuri_goukei > 4`.
+6. Pada event pemeriksaan awal, jangan memenuhi syarat bukti:
+   - target yang sengaja dibuat adalah `yusuri_goukei <= 4`;
+   - jangan memasang lima titik kamera.
+7. Biarkan event berjalan sampai polisi datang.
+8. Ending yang keluar: **BAD END: Mission Failed**.
+9. Jika menu tidak menampilkan `Go see her`, lanjutkan slot biasa tanpa mengaktifkan route Yume, lalu cek lagi pada Minggu berikutnya.
+
+### F.3 Bad ending ketiga — Plan Failed
+
+`Plan Failed` tidak dipicu oleh pilihan dialog tertentu, tetapi oleh `Sunday_P_keikaido==9` saat tidur Minggu.
+
+1. **LOAD A1.**
+2. Setiap kali event investigasi memberi pilihan, pilih tindakan yang meneruskan investigasi/inspeksi, bukan `Leave`.
+3. Ketika event barang atau lokasi menaikkan kewaspadaan, biarkan event selesai. Counter `Sunday_P_keikaido` bertambah satu pada event tersebut.
+4. Setelah setiap Minggu, buka **Profile → keikaido** untuk melihat status. Jangan tidur jika belum ingin mencapai angka 9.
+5. Ulangi investigasi sampai profil menunjukkan kewaspadaan lebih dari 8.
+6. Buat save **B-PF-9** sebelum memilih `yasumu`.
+7. Pilih **`yasumu`**.
+8. Saat source membaca `Sunday_P_keikaido==9`, game langsung memanggil **BAD END: Plan Failed**.
+9. Jika counter meloncat melewati 9 karena event tertentu, LOAD A1 dan ulangi dengan investigasi yang lebih sedikit. Source hanya memanggil ending pada nilai tepat 9.
+
+### F.4 Bad ending keempat — Plan Failed 2
+
+Ending ini adalah cabang lanjutan, bukan ending awal biasa.
+
+1. **LOAD A1.**
+2. Ikuti persiapan Subjugation pada F.6 sampai route sudah aktif.
+3. Lanjutkan event sampai cabang tambahan `tuika_K_R` muncul.
+4. Buat save **B-PF2** sebelum memasuki cabang tambahan.
+5. Saat Konno menegur dan pilihan cabang muncul, pilih jawaban yang membuat konflik berlanjut dan polisi dipanggil. Jangan memilih jawaban damai/meninggalkan lokasi.
+6. Biarkan percakapan selesai sampai polisi masuk.
+7. Ending yang keluar: **BAD END: Plan Failed 2**.
+8. LOAD A1 untuk memulai route ending lain.
+
+### F.5 Konno End — satu route bersih penuh
+
+Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
+
+#### April
+
+1. **LOAD A1.**
+2. Senin–Jumat gunakan kombinasi `sansaku`, `kousatu`, dan `yasumu`; jangan memilih `Go see her`.
+3. Saat event Konno April muncul, biarkan event selesai.
+4. Hasil event: `konno_4gatu += 1`, `konno_koukando += 1`.
+5. Buat save **K0** setelah event April.
+
+#### Mei
+
+1. Jika event Konno Mei muncul, pilih salah satu dari dua jawaban aman:
+   - **`Haha, yes I'm so very bored. My apologies.`**, atau
+   - **`Aren't you busy with your studies?`**
+2. Kedua pilihan tersebut memberi `konno_koukando += 1` dan `konno_5gatu += 1`.
+3. Jangan pilih **`You seem to be as free as I am though?`** jika ingin jalur dialog yang paling ramah.
+4. Buat save **K1** setelah event Mei.
+
+#### Juni–Juli
+
+1. Saat event donat Juni muncul, biarkan selesai; hasilnya `konno_koukando += 1`.
+2. Saat event heatstroke Juli muncul:
+   - bawa Konno ke kamar;
+   - jangan menyerang atau memulai tindakan seksual;
+   - biarkan Shinya merawatnya sampai selesai.
+3. Hasil Juli: `konno_koukando += 1`.
+4. Buat save **K2** setelah event Juli.
+
+#### Agustus
+
+1. Saat berada di Electronics Shops/bar, pilih:
+   - **`What, feeling shy?`**
+2. Hasil: `konno_koukando += 1`, `konno_8gatu += 1`.
+3. Dua pilihan lain tidak seaman pilihan di atas untuk walkthrough utama.
+4. Buat save **K3**.
+
+#### September
+
+1. Saat event Office muncul, biarkan event menginap Konno–Yume berjalan.
+2. Jangan memulai route Yume dan jangan memilih `Go see her`.
+3. Jika syarat `konno_koukando >= 4` dan `Sunday_P_koukando >= 8` terpenuhi, event menambah hubungan Konno.
+4. Pastikan `konno_9gatu=1`.
+5. Target sebelum Oktober: **`konno_koukando >= 5`**.
+6. Buat save **K4**.
+
+#### Oktober
+
+1. Pastikan `konno_koukando >= 6`.
+2. Saat confession Konno muncul, pilih:
+   - **`Would you like to come in for a bit?`**
+3. Setelah event, pastikan **`konno_10gatu=1`**.
+4. Jika ingin telepon ucapan selamat, naikkan `Sunday_P_koukando >= 9`; kalau tidak, telepon itu boleh tidak muncul.
+5. Buat save **K5 — Konno confession complete**.
+6. Pilih `yasumu` setiap Minggu sampai `R_month==29`.
+7. Jangan mengaktifkan confession Yume.
+8. Ending: **KONNO END: A Different Kind of Happiness**.
+
+### F.6 Subjugation — satu persiapan, tiga load ending
+
+#### Persiapan harian
+
+1. **LOAD A1.**
+2. Sampai kamera cukup, pilih `kousaku` total **12 kali**:
+   - 2 kali → kamera tambahan pertama;
+   - 3 kali → kamera tambahan kedua;
+   - 3 kali → kamera tambahan ketiga;
+   - 4 kali → kamera tambahan keempat.
+3. Saat memilih `sinnyu`, pasang kamera dengan urutan:
+   - Living room → **Tablet**;
+   - Living room → **Alarm clock**;
+   - Changing room → **Fire alarm**;
+   - Bathroom → **Light**;
+   - titik kelima yang belum aktif: **Bathroom → Water heater/tub** atau **Toilet → Toilet bowl**.
+4. Setiap pemasangan mengurangi:
+   - `com -= 1`;
+   - `koudou -= 1`.
+5. Jangan memasang kamera di titik yang sudah aktif.
+6. Target sebelum route:
+   - lima kamera aktif;
+   - `yusuri_goukei > 4`;
+   - `route_jyunai=0`;
+   - `route_ryoujyoku=0`.
+7. Buat save **R0 — five evidence cameras**.
+
+#### Membuka route
+
+1. Pada Minggu, pilih **`Go see her`**.
+2. Jangan pilih `Stop`.
+3. Pada event awal Subjugation, pastikan lima bukti kamera diputar sampai `yusuri_goukei` melewati 4.
+4. Setelah berhasil, buat save **R1 — Subjugation stage 1**.
+
+#### Revenge End
+
+1. Dari R1, lanjutkan setiap event otomatis.
+2. Sebelum layar hasil setiap stage, buat save baru: **R-RESULT**.
+3. Pada layar hasil, arahkan hasil ke sisi paling rendah/negatif.
+4. Target internal: `ryoujyokuEND1=1`.
+5. Jika result menunjukkan flag/level negatif, lanjutkan.
+6. Ending: **REVENGE END**.
+
+#### Confined End
+
+1. **LOAD R-RESULT**, bukan A1.
+2. Ulangi scene hasil.
+3. Pilih rangkaian tindakan tingkat rendah sampai sedang, jangan sisi paling negatif dan jangan sisi maksimum.
+4. Target internal: `ryoujyokuEND2=1`.
+5. Ending: **CONFINED END**.
+
+#### Subjugation End
+
+1. **LOAD R-RESULT**.
+2. Ulangi scene hasil.
+3. Pilih tindakan dengan hasil kemahiran tertinggi pada setiap stage.
+4. Target internal: `ryoujyokuEND3=1`.
+5. Ending: **SUBJUGATION END**.
+6. Jika `Sunday_P_yuisei > 8`, event lanjutan marriage Yume dapat terbuka; buat save sebelum memilihnya.
+
+**Catatan result:** source memakai `exp` dan level jarum hasil, bukan satu angka universal yang selalu bernama “total exp”. Karena itu yang harus dicocokkan adalah hasil layar/flag akhir: `END1`, `END2`, atau `END3`.
+
+### F.7 Pure Love gelap — J_ninsin tetap nol
+
+1. **LOAD A1.**
+2. Jalankan kalender hubungan Yume sampai syarat:
+   - `Sunday_P_koukando > 8`;
+   - `Sunday_P_yuisei >= 10`;
+   - `route_jyunai=0` sebelum confession.
+3. Pilihan romance:
+   - April: **`Don't let 'em get to you.`**
+   - Mei: **`Be careful from now on.`**
+   - Juni: **`Do you like meat?`**
+   - Juli: **`Just call me if you're ever in trouble`**
+   - Agustus: **`You've got wonderful parents.`**
+   - September: **`It's dangerous if your fans show up though.`**
+4. Buat save **P0 — before Yume confession**.
+5. Selesaikan confession sampai `route_jyunai=1`.
+6. Buat save **J-DARK-1** sebelum scene J1.
+7. Pada J1, J2, dan J3:
+   - boleh memakai `Conversation`, `Touch`, dan `Kiss`;
+   - saat finish pilih **`Outside/Sotodasi`**, atau akhiri tanpa `Inside`;
+   - jangan memilih `Inside/Nakadasi`.
+8. Pastikan akhir scene tetap **`J_ninsin=0`**.
+9. Buat save **J-DARK-END** sebelum `EV_jyunaiEND`.
+10. Lanjutkan perhitungan ending.
+11. Hasil: **PURE LOVE END: Shrouded in Darkness**.
+
+### F.8 Pure Love positif/True — route terakhir
+
+1. **LOAD P0**, bukan save Pure Love gelap.
+2. Selesaikan confession Yume sampai `route_jyunai=1`.
+3. Buat tiga save:
+   - **J1-START**
+   - **J2-START**
+   - **J3-START**
+4. Pada setiap scene:
+   - pilih `Conversation` atau `Touch`;
+   - pilih `Kiss`/foreplay yang tersedia;
+   - pilih `Slow` atau `Fast` sampai `H_syasei > 9`;
+   - pilih `Inside/Nakadasi`;
+   - jika muncul, pilih **`Large amount/Nakadasi Tairyou`**.
+5. Counter setelah tiga scene:
+   - J1: `J_ninsin += 2` → total 2;
+   - J2: `J_ninsin += 2` → total 4;
+   - J3: `J_ninsin += 2` → total 6.
+6. Buat save **J-POS-END** tepat sebelum `EV_jyunaiEND`.
+7. Dengan `J_ninsin=6`, source memberi peluang positif 50%.
+8. Jika hasil RNG positif, ending: **TRUE END: Happiness Given Form**.
+9. Jika hasil RNG negatif, LOAD J-POS-END dan ulangi perhitungan.
+10. Jangan mengklaim `True End` 100% dari tiga scene standar; source memeriksa `J_ninsin>=10`, sedangkan scene J1–J3 yang terbaca hanya memberi maksimal 6.
+
+### F.9 Marriage ending Yume
+
+#### Marriage dari Pure Love
+
+1. **LOAD J-POS-END** atau save setelah Pure Love positif.
+2. Pastikan `Sunday_P_yuisei > 9`.
+3. Saat `tuika_y_JH.ks` terbuka, buat save **M-JH-START**.
+4. Ikuti event hingga `tuika_y_JH.ks` mencapai label `END`.
+5. Jangan kembali ke save sebelum route Yume.
+6. Hasil: **MARRIAGE END: Pure White Wedding**.
+
+#### Marriage dari Subjugation
+
+1. **LOAD save Subjugation End** setelah `Sunday_P_yuisei > 8`.
+2. Buat save **M-RH-START** sebelum event tambahan.
+3. Saat `tuika_y_RH.ks` terbuka, ikuti event sampai label `END`.
+4. Hasil: **MARRIAGE END: The Ideal Future**.
+
+### F.10 Ringkasan load tanpa kebingungan
+
+- Bad ending awal: **LOAD A1** setiap kali.
+- Konno: **LOAD A1**, selesai sampai K5, lalu tidur sampai Oktober.
+- Subjugation: **LOAD A1** → siapkan R0 → buat R-RESULT → load R-RESULT untuk Revenge/Confined/Subjugation.
+- Pure Love gelap: **LOAD A1** → P0 → J-DARK-1.
+- Pure Love positif: **LOAD P0** → J1-START/J2-START/J3-START → J-POS-END.
+- Marriage Pure Love: **LOAD J-POS-END** atau save setelah ending positif.
+- Marriage Subjugation: **LOAD save Subjugation End** dengan `Sunday_P_yuisei > 8`.
+
+Dengan urutan ini, tidak ada route yang saling tertimpa: Konno selesai sebelum route Yume, Subjugation memakai satu preparation save dengan tiga result save, dan Pure Love memakai save terpisah untuk hasil gelap serta hasil positif.
