@@ -425,3 +425,126 @@ Bagian ini mencatat prompt pilihan yang muncul di script utama dan event eksplor
 Scene dewasa memiliki kontrol **slow/fast**, **climax**, **finish inside/outside**, dan **back/return**. Secara gameplay, kontrol tersebut memengaruhi counter scene, poin kehamilan pada jalur J, serta flag hasil pada jalur R; kontrolnya bukan pilihan dialog biasa.
 
 Menu replay memiliki prompt seperti **H manual**, **Continue the Story**, **View Endings**, **Skip**, dan **Return**. Daftar replay menampilkan beberapa scene berlabel **REPLAY**, tetapi pembukaannya bergantung pada flag `sf.rp_*` yang sudah dikumpulkan.
+
+---
+
+## Appendix B — Walkthrough step-by-step per ending
+
+Lampiran ini adalah panduan operasional dari awal permainan. Nama pilihan dipertahankan seperti UI game agar mudah dicocokkan. Pilihan dialog yang tidak disebut sebagai syarat hanya mengubah dialog, counter lokal, atau statistik yang tidak menentukan ending secara langsung.
+
+### B.1 Aturan persiapan umum
+
+1. Buat **Save 00 — awal permainan** sebelum memilih `Yes/No` pada prolog.
+2. Buat **Save 01 — setelah hadiah awal** sebelum memilih hadiah dan memasang kamera.
+3. Selama minggu biasa, gunakan aktivitas `sinnyu`, `kousatu`, dan `kousaku` untuk membangun perangkat; gunakan `sansaku` untuk event dan kenaikan hubungan.
+4. Jangan membiarkan `Sunday_P_keikaido` mencapai 9 ketika memilih tidur. Nilai itu memicu **BAD END: Plan Failed**.
+5. Setelah route Yume atau Konno aktif, simpan lagi sebelum event besar. Beberapa event mengunci menu aktivitas biasa.
+6. Untuk scene interaktif, buat save tepat sebelum tombol `finish`. Hasil akhir tidak selalu ditentukan oleh satu dialog; game membaca `exp`, tingkat kemahiran scene, dan flag hasil.
+
+### B.2 Jalur prolog yang direkomendasikan
+
+Untuk rute hubungan atau completionist, ikuti urutan ini:
+
+1. Pada prolog pilih `Yes` jika ingin membaca tutorial; pilih `No` hanya untuk melewati tutorial.
+2. Pada pilihan hadiah, pilih **`I'd be happy, my dear Yume!`** untuk menaikkan affection. Dua pilihan lain tetap melanjutkan permainan, tetapi tidak membantu jalur hubungan.
+3. Pada pemasangan awal pilih **`Install camera`**. Pilih `Stop` hanya jika sengaja mengejar jalur gagal atau ingin memulai investigasi tanpa perangkat awal.
+4. Pada setiap pemasangan kamera berikutnya, pilih `Install device` hanya jika resource cukup. Jika resource tidak cukup, pilih `Leave`/`Stop` dan kumpulkan resource pada minggu berikutnya; jangan memaksakan pemasangan.
+
+### B.3 Pure Love — jalur aman dari awal sampai ending
+
+#### Persiapan April–September
+
+1. Pertahankan `Sunday_P_keikaido` serendah mungkin. Saat ada pilihan yang jelas menaikkan affection, prioritaskan pilihan tersebut dibanding dominance atau suspicion.
+2. Pada event romance pilih:
+   - Event awal: **`Don't let 'em get to you.`**
+   - Mei: **`Be careful from now on.`**
+   - Juni: **`Do you like meat?`** — pilihan ini menaikkan affection dan dominance.
+   - Juli: **`Just call me if you're ever in trouble`**
+   - Agustus: **`You've got wonderful parents.`**
+   - September: **`It's dangerous if your fans show up though.`**
+3. Pada hari Minggu, pilih kunjungan Yume ketika opsi `Go see her` tersedia. Jangan memilih `Assault her`; pilihan itu langsung menuju **BAD END: Irresistible Desires**.
+4. Bila shortcut `Skip/Return` muncul, jangan gunakan `Skip` pada playthrough pertama. Gunakan shortcut hanya setelah route pernah dibuka dan Anda sudah membuat save cadangan.
+5. Setelah event Oktober memicu konflik Yume–Konno, biarkan event berjalan sampai pengakuan Yume. Route ditetapkan sebagai `route_jyunai=1` setelah scene pertama selesai.
+
+#### Tiga tahap Pure Love
+
+1. Selesaikan `EV_jyunai` tahap 1, kemudian kembali ke jadwal.
+2. Selesaikan tahap 2 dan buat save sebelum scene interaktif.
+3. Selesaikan tahap 3 dan buat save sebelum scene interaktif terakhir.
+4. Pada setiap scene, kontrol yang menaikkan poin kehamilan adalah cabang `finish inside` dengan level hasil lebih tinggi. Secara internal:
+   - hasil biasa memberi `J_ninsin += 1`;
+   - hasil banyak memberi `J_ninsin += 2`;
+   - cabang `finish outside` tidak memberikan poin kehamilan yang sama.
+5. Untuk **TRUE END**, targetkan `J_ninsin >= 10`. Cara praktisnya adalah memilih hasil internal dengan nilai tertinggi pada ketiga scene dan reload dari save sebelum `finish` bila hasil scene tidak sesuai.
+6. Untuk **PURE LOVE END: Shrouded in Darkness**, biarkan `J_ninsin == 0`, atau gunakan save sebelum perhitungan akhir lalu biarkan RNG gagal pada rentang nilai rendah. Ending ini bukan route terpisah; ia adalah hasil perhitungan akhir Pure Love.
+7. Pada akhir `EV_jyunaiEND`, game menghitung `J_ninsin`. Nilai 10 atau lebih selalu menghasilkan **TRUE END: Happiness Given Form**; nilai 0 selalu menghasilkan **Shrouded in Darkness**; nilai 1–9 mengikuti tabel peluang pada bagian ending utama.
+
+#### Titik save Pure Love
+
+| Save | Waktu membuat save | Kegunaan |
+|---|---|---|
+| J-00 | Sebelum memilih hadiah awal | Mengulang fondasi statistik |
+| J-01 | Sebelum event romance Oktober | Mengulang entry Pure Love/Konno |
+| J-02 | Sebelum Pure Love tahap 1 | Mengulang akumulasi `J_ninsin` |
+| J-03 | Sebelum Pure Love tahap 3 | Mencoba True/Shrouded tanpa mengulang seluruh route |
+| J-04 | Sebelum `EV_jyunaiEND` | Menguji hasil RNG pada nilai 1–9 |
+
+### B.4 Subjugation — enam tahap dan tiga ending
+
+1. Mulai dari save sebelum event `EV_ryoujyoku.ks`.
+2. Ikuti event awal sampai scene interaktif pertama. Jika gagal pada event awal, polisi datang dan hasilnya **BAD END: Mission Failed**.
+3. Setelah scene pertama, kembali ke jadwal dan selesaikan tahap `ryoujyoku2` berikutnya secara berurutan. Jangan melewati tahap yang sedang ditandai `story_on=1`.
+4. Ulangi pola ini untuk enam tahap: masuk event, selesaikan scene, kembali ke `syu_room_Sunday`, lalu pilih `yasumu` agar kalender bergerak.
+5. Pada setiap scene, `exp` ditentukan oleh hasil kontrol interaktif dan flag kemahiran (`H_R*_jyukuren`). Target hasil yang dibaca game:
+   - `exp <= 6` → `ryoujyokuEND1` → **REVENGE END: A Future Gone Wrong**.
+   - `exp 7–12` → `ryoujyokuEND2` → **CONFINED END: A World Only for the Two**.
+   - `exp >= 13` → `ryoujyokuEND3` → **SUBJUGATION END: The Passionate Scandal**.
+6. Untuk Revenge, gunakan hasil rendah pada scene dan jangan menaikkan kemahiran.
+7. Untuk Confined, targetkan hasil menengah secara konsisten.
+8. Untuk Subjugation, targetkan hasil tinggi pada tahap akhir; bila `exp` berada di sekitar batas, reload save sebelum `finish` dan ulangi.
+9. Pada tahap 6, jika `R6_kizetu == 1`, game memakai cabang pingsan khusus sebelum menambah progression. Buat save sebelum tahap 6 apabila mengejar completionist.
+10. Setelah flag `ryoujyokuEND1/2/3` ditetapkan, biarkan dispatcher Minggu berjalan sampai file ending terkait dipanggil. Jangan memulai route Yume baru dari save yang sama.
+
+### B.5 Konno — route dan ending
+
+1. Mulai dari Save 01, tetapi jangan mengaktifkan `route_jyunai` atau `route_ryoujyoku`.
+2. Dari April sampai Agustus, selalu pilih event Konno saat tersedia. Pilihan yang paling aman untuk menaikkan `konno_koukando` adalah:
+   - Mei: `Haha, yes I'm so very bored. My apologies.` atau `Aren't you busy with your studies?`
+   - Agustus: `What, feeling shy?`
+3. Pada event September, pilih cabang yang mempertahankan pertemuan Konno dan menaikkan `konno_koukando`; hindari cabang yang membatalkan pertemuan.
+4. Pada event Oktober, pilih **`Would you like to come in for a bit?`**. Pilihan `Have a good night.` tidak mengaktifkan progression yang sama.
+5. Pastikan `konno_10gatu=1`, lanjutkan kalender sampai event akhir, dan jangan mengambil confession Yume.
+6. Ketika event akhir Konno muncul, biarkan scene berjalan sampai `KONNO END: A Different Kind of Happiness`.
+7. Jika route tidak muncul, periksa tiga hal: `konno_koukando`, flag event bulan September, dan `konno_10gatu`. Jangan memperbaiki dari save setelah route Yume sudah aktif karena dispatcher akan memprioritaskan route tersebut.
+
+### B.6 Ending gagal yang dapat dipicu langsung
+
+| Ending | Langkah reproduksi |
+|---|---|
+| **BAD END: Plan Failed** | Biarkan kalender mencapai fase akhir tanpa route yang selesai, atau tidur saat `Sunday_P_keikaido == 9`. |
+| **BAD END: Irresistible Desires** | Pada event ketika Shinya tertangkap di kamar, pilih `Assault her`. Untuk melanjutkan, reload dan pilih `Hide`. |
+| **BAD END: Mission Failed** | Masuk event awal Subjugation lalu gagal pada pemeriksaan/event yang memanggil polisi. |
+| **BAD END: Plan Failed 2** | Masuk cabang lanjutan Konno/Subjugation, biarkan cabang perlawanan Konno selesai, lalu lanjutkan sampai polisi datang. |
+
+### B.7 Marriage endings dan urutan unlock
+
+Marriage ending bukan route awal yang dapat dipilih dari hari pertama. Urutan yang benar:
+
+1. Selesaikan Pure Love atau Subjugation terlebih dahulu.
+2. Kembali ke menu replay/continuation dan pilih event lanjutan Yume yang sesuai.
+3. Untuk **MARRIAGE END: Pure White Wedding**, lanjutkan cabang `tuika_y_JH.ks` dari hasil Pure Love, lalu penuhi pemeriksaan hubungan dan event kehamilan yang diminta.
+4. Untuk **MARRIAGE END: The Ideal Future**, lanjutkan cabang `tuika_y_RH.ks` dari hasil Subjugation, lalu penuhi syarat route lanjutan.
+5. Jika event lanjutan tidak muncul, periksa flag replay `sf.rp_*`, `jyunai_back`, route yang baru selesai, serta status clear. Jangan menganggap marriage ending akan muncul hanya karena ending utama sudah terlihat di galeri.
+
+### B.8 Checklist completionist
+
+- [ ] Save prolog dan hadiah awal dibuat.
+- [ ] Semua pilihan event romance April–September dicoba.
+- [ ] Pure Love `J_ninsin=0`, rentang 1–9, dan `J_ninsin>=10` didokumentasikan.
+- [ ] Keenam tahap Subjugation selesai dengan `exp` rendah, menengah, dan tinggi.
+- [ ] Konno mencapai `konno_10gatu=1` dan ending utama terbuka.
+- [ ] Keempat bad ending utama dicatat.
+- [ ] Kedua marriage ending dibuka melalui continuation/replay.
+- [ ] CG dan replay terkait setiap ending sudah terlihat.
+
+> **Catatan teknis:** source game tidak menyimpan satu urutan tombol universal untuk semua scene interaktif. Hasil ditentukan oleh counter internal, tingkat kemahiran, flag scene, dan kadang RNG. Karena itu, panduan yang benar-benar dapat diulang adalah kombinasi **target flag + rentang nilai + save sebelum hasil**, bukan klaim bahwa satu tombol tertentu selalu menghasilkan ending tertentu.
