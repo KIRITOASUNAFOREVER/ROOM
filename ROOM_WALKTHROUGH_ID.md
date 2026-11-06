@@ -495,13 +495,13 @@ Untuk rute hubungan atau completionist, ikuti urutan ini:
 2. Ikuti event awal sampai scene interaktif pertama. Jika gagal pada event awal, polisi datang dan hasilnya **BAD END: Mission Failed**.
 3. Setelah scene pertama, kembali ke jadwal dan selesaikan tahap `ryoujyoku2` berikutnya secara berurutan. Jangan melewati tahap yang sedang ditandai `story_on=1`.
 4. Ulangi pola ini untuk enam tahap: masuk event, selesaikan scene, kembali ke `syu_room_Sunday`, lalu pilih `yasumu` agar kalender bergerak.
-5. Pada setiap scene, `exp` ditentukan oleh hasil kontrol interaktif dan flag kemahiran (`H_R*_jyukuren`). Target hasil yang dibaca game:
-   - `exp <= 6` → `ryoujyokuEND1` → **REVENGE END: A Future Gone Wrong**.
-   - `exp 7–12` → `ryoujyokuEND2` → **CONFINED END: A World Only for the Two**.
-   - `exp >= 13` → `ryoujyokuEND3` → **SUBJUGATION END: The Passionate Scandal**.
-6. Untuk Revenge, gunakan hasil rendah pada scene dan jangan menaikkan kemahiran.
-7. Untuk Confined, targetkan hasil menengah secara konsisten.
-8. Untuk Subjugation, targetkan hasil tinggi pada tahap akhir; bila `exp` berada di sekitar batas, reload save sebelum `finish` dan ulangi.
+5. Pada setiap scene, `exp` ditentukan oleh hasil kontrol interaktif dan flag kemahiran (`H_R*_jyukuren`). Setelah itu `H_rizaruto_hari.ks` mengubah result level menjadi flag ending:
+   - result level negatif atau rendah → `ryoujyokuEND1` → **REVENGE END: A Future Gone Wrong**;
+   - result level 0–1 → `ryoujyokuEND2` → **CONFINED END: A World Only for the Two**;
+   - result level 2 → `ryoujyokuEND3` → **SUBJUGATION END: The Passionate Scandal**.
+6. Untuk Revenge, pilih hasil rendah/negatif pada scene dan jangan menaikkan kemahiran.
+7. Untuk Confined, targetkan result level 0–1 secara konsisten.
+8. Untuk Subjugation, targetkan result level 2 pada tahap akhir; bila layar hasil berada di sekitar batas, reload save sebelum `finish` dan ulangi.
 9. Pada tahap 6, jika `R6_kizetu == 1`, game memakai cabang pingsan khusus sebelum menambah progression. Buat save sebelum tahap 6 apabila mengejar completionist.
 10. Setelah flag `ryoujyokuEND1/2/3` ditetapkan, biarkan dispatcher Minggu berjalan sampai file ending terkait dipanggil. Jangan memulai route Yume baru dari save yang sama.
 
@@ -548,3 +548,152 @@ Marriage ending bukan route awal yang dapat dipilih dari hari pertama. Urutan ya
 - [ ] CG dan replay terkait setiap ending sudah terlihat.
 
 > **Catatan teknis:** source game tidak menyimpan satu urutan tombol universal untuk semua scene interaktif. Hasil ditentukan oleh counter internal, tingkat kemahiran, flag scene, dan kadang RNG. Karena itu, panduan yang benar-benar dapat diulang adalah kombinasi **target flag + rentang nilai + save sebelum hasil**, bukan klaim bahwa satu tombol tertentu selalu menghasilkan ending tertentu.
+
+---
+
+## Appendix C — Kalender harian lengkap dari awal sampai route entry
+
+Bagian ini menjawab pertanyaan “setiap hari harus melakukan apa”. Jadwal di bawah memakai lima slot aktivitas yang terlihat sebagai **Senin–Jumat**. Setelah slot kelima selesai, game menjalankan event akhir minggu lalu masuk ke menu Minggu.
+
+### C.1 Arti kode aktivitas
+
+| Kode | Pilihan di game | Tujuan |
+|---|---|---|
+| `KOS` | `kousaku` | Menambah kapasitas kamera/resource crafting |
+| `KAT` | `kousatu` | Menaikkan level observasi dan membuka titik kamera |
+| `SIN` | `sinnyu` | Masuk ke kamar Yume dan memasang kamera |
+| `SAN` | `sansaku` | Pergi ke lokasi luar; memicu event lokasi dan event Konno |
+| `REST` | `yasumu` | Mengisi slot tanpa menambah perangkat; dipakai saat resource belum siap |
+
+`R_month` bukan nomor bulan kalender biasa: `1–4` adalah April, `5–8` Mei, `9–12` Juni, `13–16` Juli, `17–20` Agustus, `21–24` September, dan `25–28` Oktober. Nilai `week` adalah posisi slot internal dalam siklus; event pada `week == 5` berjalan setelah slot Jumat sebelum menu Minggu.
+
+### C.2 Aturan harian yang harus dipatuhi
+
+1. Pada setiap awal minggu, baca event otomatis terlebih dahulu. Jangan memilih aktivitas sebelum dialog/event selesai.
+2. Ikuti kolom Senin sampai Jumat secara berurutan. Jika sebuah aktivitas tidak tersedia karena resource, ganti dengan `REST`; jangan memilih `SIN` lalu memaksa `Install camera` ketika `com == 0`.
+3. Saat `SIN` membuka daftar titik kamera, pilih `Install camera` hanya jika ada resource dan `koudou`; jika tidak, pilih `Stop`.
+4. Pada `SAN`, masuk ke lokasi yang ditulis di tabel. Event Konno bergantung pada lokasi, bukan hanya jumlah kunjungan.
+5. Setiap Minggu pilih `Save` sebelum `yasumu`. Setelah menyimpan, pilih `yasumu` untuk mengawali siklus berikutnya.
+6. Jangan memilih `Assault her` pada event tertangkap di kamar. Untuk jalur normal pilih `Hide`.
+7. Jaga `Sunday_P_keikaido < 9`. Nilai tepat 9 saat tidur memicu **BAD END: Plan Failed**.
+
+### C.3 Jadwal utama — jalur persiapan Pure Love dan Subjugation
+
+Jadwal ini dipakai sampai salah satu route Yume aktif. Untuk Pure Love, `SAN` terutama menjaga progres event dan hubungan. Untuk Subjugation, `SIN` dan upgrade perangkat diprioritaskan, tetapi jangan mengaktifkan route sebelum titik yang diinginkan.
+
+| Siklus | Bulan/slot | Senin | Selasa | Rabu | Kamis | Jumat | Setelah Jumat / Minggu |
+|---:|---|---|---|---|---|---|---|
+| 1 | April 1 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Save 01; pasang kamera awal bila resource cukup |
+| 2 | April 2 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Selesaikan event main April; jangan menaikkan alert |
+| 3 | April 3 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Pastikan event investigasi April selesai |
+| 4 | April 4 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Save 02; masuk Mei dengan perangkat stabil |
+| 5 | Mei 1 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event main Mei 1 berjalan pada akhir siklus |
+| 6 | Mei 2 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event main Mei 2 berjalan pada slot awal siklus berikutnya |
+| 7 | Mei 3 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Pilih respons romance Mei yang meningkatkan affection |
+| 8 | Mei 4 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Save 03; event romance Mei diselesaikan |
+| 9 | Juni 1 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event main Juni 1 berjalan pada slot Senin |
+| 10 | Juni 2 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event romance Juni berjalan pada slot Jumat |
+| 11 | Juni 3 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Tidak ada pilihan route manual; lanjutkan persiapan |
+| 12 | Juni 4 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event main Juni 3; Save 04 |
+| 13 | Juli 1 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event Juli 1 berjalan pada slot Jumat |
+| 14 | Juli 2 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event Juli 2 berjalan setelah slot Jumat |
+| 15 | Juli 3 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event romance Juli; jangan gunakan shortcut route |
+| 16 | Juli 4 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Save 05; pastikan affection Yume terus naik |
+| 17 | Agustus 1 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Lanjutkan event main Agustus pada slot Selasa |
+| 18 | Agustus 2 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Fokus affection; hindari pilihan yang menaikkan alert |
+| 19 | Agustus 3 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event romance Agustus pada slot Kamis |
+| 20 | Agustus 4 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Save 06; target `Sunday_P_koukando > 5` |
+| 21 | September 1 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Persiapkan event kiss; jangan memilih `Assault her` |
+| 22 | September 2 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event kiss utama dan event lanjutan berjalan pada slot Selasa jika affection > 5 |
+| 23 | September 3 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event menginap Konno berjalan pada slot Jumat |
+| 24 | September 4 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Event romance September; Save 07 |
+| 25 | Oktober 1 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Jangan mengaktifkan route sebelum menentukan ending target |
+| 26 | Oktober 2 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Kumpulkan resource terakhir; buat Save 08 |
+| 27 | Oktober 3 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Pastikan target affection/dominance sudah tercapai |
+| 28 | Oktober 4 | `KOS` | `KAT` | `SIN` | `SAN` | `REST` | Slot route entry; event Konno atau confession Yume berjalan |
+
+**Penting:** tabel ini adalah jadwal harian route-neutral yang menjaga semua sistem tetap aktif. Kolom `SAN` harus diganti lokasi sesuai tabel Konno di bawah bila targetnya **KONNO END**.
+
+### C.4 Lokasi `SAN` yang wajib untuk route Konno
+
+Pada setiap siklus yang memiliki event Konno, gunakan slot `SAN` untuk lokasi berikut. Jika event belum muncul, ulangi lokasi itu pada slot `SAN` berikutnya; jangan menggantinya dengan `REST`.
+
+| Periode | Lokasi `SAN` | Event yang dipicu |
+|---|---|---|
+| April | `Go to the Electronics Shops` | Event Konno April |
+| Mei | `Go to the Shopping District` | Event Konno Mei |
+| Juni | `Go to the Shopping District` | Event Konno Juni |
+| Juli | `Go to the Shopping District` | Event Konno Juli |
+| Agustus | `Go to the Electronics Shops` | Event Konno Agustus |
+| September | `Go to the Office` | Event Konno September |
+| Oktober | `Go to the Office` bila tersedia | Persiapan confession dan event lanjutan |
+
+Pilihan Konno yang harus dipilih:
+
+1. Mei: `Haha, yes I'm so very bored. My apologies.` atau `Aren't you busy with your studies?`
+2. Agustus: `What, feeling shy?`
+3. Oktober: `Would you like to come in for a bit?`
+4. Pastikan `konno_koukando >= 6` sebelum event confession Oktober.
+5. Pastikan `konno_10gatu == 1`, lalu jangan mengaktifkan `route_jyunai` atau `route_ryoujyoku`.
+6. Lanjutkan satu siklus sampai `R_month == 29`; saat tidur, game memanggil **KONNO END: A Different Kind of Happiness**.
+
+### C.5 Pilihan romance yang harus dilakukan pada hari event
+
+Event berikut berjalan otomatis pada slot yang ditentukan oleh dispatcher. Setelah aktivitas hari itu selesai, pilih jawaban berikut:
+
+| Event | Pilihan yang direkomendasikan | Alasan |
+|---|---|---|
+| Romance April | `Don't let 'em get to you.` | +affection |
+| Romance Mei | `Be careful from now on.` | +affection |
+| Romance Juni | `Do you like meat?` | +affection dan +dominance |
+| Romance Juli | `Just call me if you're ever in trouble` | +affection |
+| Romance Agustus | `You've got wonderful parents.` | +affection |
+| Romance September | `It's dangerous if your fans show up though.` | +affection |
+| Romance Oktober | Ikuti confession Yume; jangan memilih route Konno pada save Pure Love | Mengaktifkan `route_jyunai` |
+
+Sesudah setiap pilihan, periksa status dan buat save. `Sunday_P_koukando` harus lebih dari 8 untuk event confession Yume Oktober; shortcut confession hanya muncul bila affection dan dominance sama-sama cukup.
+
+### C.6 Setelah Pure Love aktif: instruksi hari per hari
+
+Begitu `route_jyunai == 1`, source game langsung melewati menu aktivitas mingguan biasa. Artinya tidak ada lagi pilihan `KOS/KAT/SIN/SAN` normal. Lakukan urutan ini:
+
+1. Setelah confession dan scene pertama selesai, buat Save J-01.
+2. Pada siklus berikutnya, biarkan event `EV_jyunai` berjalan otomatis.
+3. Saat scene interaktif selesai, buat Save J-02 sebelum melanjutkan.
+4. Ulangi sampai tahap Pure Love 2 dan 3; setiap tahap kembali ke jadwal secara otomatis.
+5. Pada scene terakhir, pilih hasil yang menaikkan `J_ninsin` bila mengejar **TRUE END**.
+6. Setelah tahap terakhir, jangan menekan `Skip` pada menu Minggu. Biarkan `EV_jyunaiEND` menghitung ending.
+7. `J_ninsin >= 10` menghasilkan **TRUE END: Happiness Given Form**; `J_ninsin == 0` menghasilkan **PURE LOVE END: Shrouded in Darkness**.
+
+### C.7 Setelah Subjugation aktif: instruksi hari per hari
+
+Begitu `route_ryoujyoku >= 1`, menu aktivitas mingguan juga dilewati oleh dispatcher. Progression berjalan melalui enam tahap event:
+
+1. Buat Save R-01 sebelum event awal `EV_ryoujyoku`.
+2. Selesaikan event awal. Jika gagal dan polisi datang, hasilnya **BAD END: Mission Failed**.
+3. Setelah scene selesai, game kembali ke Minggu. Pilih `yasumu`; jangan kembali ke `SAN` atau `SIN`.
+4. Ulangi pola `event tahap → scene interaktif → kembali ke Minggu → yasumu` sampai tahap 6.
+5. Buat save sebelum tombol hasil pada setiap tahap karena `H_rizaruto_hari.ks` mengubah `H_R*_jyukuren` dan flag ending.
+6. Untuk **REVENGE END**, pilih hasil internal rendah/negatif.
+7. Untuk **CONFINED END**, pilih hasil internal level 0–1 atau hasil menengah sesuai layar hasil.
+8. Untuk **SUBJUGATION END**, pilih hasil internal level 2 atau hasil tertinggi. Jangan memakai aturan “`exp >= 13` selalu” sebagai satu-satunya patokan; source memetakan result level dan kemahiran per tahap.
+
+### C.8 Minggu yang memicu bad ending
+
+| Waktu | Tindakan yang menyebabkan ending |
+|---|---|
+| Minggu mana pun | Tidur saat `Sunday_P_keikaido == 9` → **BAD END: Plan Failed** |
+| Event tertangkap | Pilih `Assault her` → **BAD END: Irresistible Desires** |
+| Event awal Subjugation | Gagal pada pemeriksaan/event polisi → **BAD END: Mission Failed** |
+| Setelah Oktober | Tidak mengaktifkan route apa pun sampai `R_month == 29` → **BAD END: Plan Failed** |
+
+### C.9 Checklist harian yang bisa dicetak
+
+- [ ] Event otomatis hari ini sudah selesai sebelum memilih aktivitas.
+- [ ] Aktivitas hari ini sesuai baris kalender.
+- [ ] Jika `SIN`: resource `com` dan `koudou` cukup.
+- [ ] Jika `SAN`: lokasi sesuai target route.
+- [ ] `Sunday_P_keikaido` masih di bawah 9.
+- [ ] Save dibuat sebelum event route atau scene interaktif.
+- [ ] Setelah Jumat: event akhir minggu diselesaikan.
+- [ ] Minggu: `Save` lalu `yasumu`.
