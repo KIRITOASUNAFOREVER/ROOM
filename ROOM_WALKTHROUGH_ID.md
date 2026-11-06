@@ -1138,6 +1138,16 @@ Counter awal yang perlu diketahui:
 - `route_jyunai=0`
 - `route_ryoujyoku=0`
 
+#### Arti tiga pilihan setelah memilih `sinnyu`
+
+Setiap `sinnyu` membuka menu tindakan kamar:
+
+- **`Install camera`** (`janp_haiti`) — masuk ke layar pemasangan kamera. Pilih lokasi yang valid, lalu konfirmasi pemasangan.
+- **`Search`** (`janp_bussyoku`) — memeriksa barang/lokasi di kamar; ini menambah progres investigasi atau memicu event item bila syaratnya terpenuhi.
+- **`Home`** (`janp_kitaku`) — langsung keluar tanpa memasang kamera atau mencari. Gunakan jika hanya ingin menambah `sinnyu_count` atau menghindari tindakan tambahan.
+
+Pada **sinnyu ketiga**, game memanggil `EV_BAD02` segera setelah masuk, sebelum menu tiga tindakan dipakai. Jadi untuk bad ending Irresistible Desires, pilihan **`Install camera / Search / Home` tidak muncul**; langsung pilih **`Assault her`**.
+
 ### F.1 Bad ending pertama — Irresistible Desires
 
 Ini adalah bad ending paling cepat karena cukup memicu `sinnyu_count==3`.
@@ -1145,9 +1155,9 @@ Ini adalah bad ending paling cepat karena cukup memicu `sinnyu_count==3`.
 1. Dari New Game, pilih **`Yes`** pada `Skip the prologue and tutorial?`.
 2. Kamera fire alarm otomatis aktif; tidak ada pilihan hadiah yang perlu dijawab.
 3. Buat **A1**, lalu **LOAD A1**.
-4. Senin minggu 1: pilih **`sinnyu`**. Tidak perlu memasang kamera.
-5. Selasa minggu 1: pilih **`sinnyu`**. Tidak perlu memasang kamera.
-6. Rabu minggu 1: pilih **`sinnyu`**. Setelah masuk, game memanggil event tertangkap.
+4. Senin minggu 1: pilih **`sinnyu`**, lalu **`Home`**.
+5. Selasa minggu 1: pilih **`sinnyu`**, lalu **`Home`**.
+6. Rabu minggu 1: pilih **`sinnyu`**. Game memanggil event tertangkap sebelum menu tindakan muncul.
 7. Saat muncul dua pilihan:
    - pilih **`Assault her`**;
    - jangan pilih `Hide`.
@@ -1179,7 +1189,7 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
 2. Pada hadiah prolog pilih **`I'd be happy, my dear Yume!`**.
 3. Di tutorial kamar pilih **`Install camera`**, lalu pasang kamera pada **fire alarm ruang tamu**.
 4. Buat **A1**, lalu **LOAD A1**.
-5. Setiap kali event investigasi memberi pilihan, pilih tindakan yang meneruskan investigasi/inspeksi, bukan `Leave`.
+5. Saat memilih `sinnyu`, pilih **`Search`** (`janp_bussyoku`) dan lakukan investigasi sampai selesai; jangan memilih `Home` bila event tersebut diperlukan untuk menaikkan kewaspadaan.
 6. Ketika event barang atau lokasi menaikkan kewaspadaan, biarkan event selesai. Counter `Sunday_P_keikaido` bertambah satu pada event tersebut.
 7. Setelah setiap Minggu, buka **Profile → keikaido** untuk melihat status. Jangan tidur jika belum ingin mencapai angka 9.
 8. Ulangi investigasi sampai profil menunjukkan kewaspadaan lebih dari 8.
@@ -1197,7 +1207,7 @@ Ending ini adalah cabang lanjutan, bukan ending awal biasa.
 3. Pasang kamera tutorial pada **fire alarm ruang tamu**.
 4. Buat **A1**, lalu **LOAD A1**.
 5. Ikuti persiapan Subjugation pada F.6 sampai route sudah aktif.
-6. Lanjutkan event sampai cabang tambahan `tuika_K_R` muncul.
+6. Saat memilih `sinnyu`, gunakan **`Search`** untuk memeriksa lokasi/item yang diminta event; gunakan **`Home`** hanya setelah pemeriksaan selesai. Lanjutkan event sampai cabang tambahan `tuika_K_R` muncul.
 7. Buat save **B-PF2** sebelum memasuki cabang tambahan.
 8. Saat Konno menegur dan pilihan cabang muncul, pilih jawaban yang membuat konflik berlanjut dan polisi dipanggil. Jangan memilih jawaban damai/meninggalkan lokasi.
 9. Biarkan percakapan selesai sampai polisi masuk.
@@ -1278,7 +1288,7 @@ Konno harus dikerjakan sebelum `route_jyunai` dan `route_ryoujyoku` aktif.
    - 3 kali → kamera tambahan kedua;
    - 3 kali → kamera tambahan ketiga;
    - 4 kali → kamera tambahan keempat.
-5. Saat memilih `sinnyu`, pasang kamera dengan urutan:
+5. Saat memilih `sinnyu`, pilih **`Install camera`** (`janp_haiti`), lalu pasang kamera dengan urutan:
    - Living room → **Tablet**;
    - Living room → **Alarm clock**;
    - Changing room → **Fire alarm**;
