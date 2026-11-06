@@ -1198,6 +1198,10 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
    - **Event Mei `5_1` — lampu kamar Yume:** otomatis; Shinya memperbaiki lampu dan membuka informasi lokasi shopping. Tidak ada pilihan tombol.
    - **Event Mei `5_2` — telepon Yume:** otomatis; Yume membicarakan pesta penyambutan kerja. Tidak ada pilihan tombol.
    - **Event romance Mei `5gatu` — insiden klien:** ada pilihan. Untuk F.2 pilih **`Be careful from now on.`** (`Sunday_P_koukando += 1`) atau pilihan lain; pilihan ini tidak mengubah `yusuri_goukei`. Pilihan yang disarankan menjaga hubungan tanpa menaikkan kewaspadaan.
+   - **Event Juni `6_1` — acara TV pagi:** otomatis; Yume bercerita bahwa ia mulai tampil rutin di televisi. Tidak ada pilihan tombol.
+   - **Event Juni `6_2` — Konno mengantar Yume pulang:** otomatis; Konno menyinggung keamanan gedung dan kemungkinan landlord dipanggil ke kamar. Tidak ada pilihan tombol.
+   - **Event romance Juni `6gatu` — rekomendasi makanan:** ada pilihan. Pilih **`Do you like meat?`** bila ingin menambah hubungan dan kemurnian; untuk F.2 pilihan ini tidak memengaruhi bukti kamera dan tidak membuka route.
+   - **Event Juni `6_3` — telepon Yume dengan ayahnya:** otomatis; Yume membicarakan acara TV dan aktor yang ia kenal. Tidak ada pilihan tombol.
    - jangan memilih dialog atau tindakan yang memulai confession Yume;
    - jangan memilih **`Go see her`** sebelum bukti siap.
 8. Pada Minggu pertama ketika tombol kunjungan muncul, pilih **`Go see her`**.
@@ -1219,10 +1223,10 @@ Gunakan pola yang sama pada setiap baris. Angka bulan mengikuti source: `R_month
 |---|---|---|---|
 | April 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tidak ada kamera/bukti |
 | Mei 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu event `5_1`, `5_2`, dan romance Mei; pilih `Be careful from now on.` jika pilihan muncul |
-| Juni 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu sampai kalender melewati `R_month=12` |
+| Juni 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu event `6_1`, `6_2`, romance `6gatu`, dan `6_3`; pilih `Do you like meat?` jika muncul |
 | Juli minggu pertama | `Rest, Rest, Rest, Rest, Rest` | Saat tombol muncul, pilih `Go see her` | Masuk event Mission Failed |
 
-**Catatan dialog:** “dialog otomatis” berarti teks/percakapan berjalan sendiri dan tidak perlu memilih apa pun. Event romance April dan Mei berbeda: keduanya memiliki tombol pilihan. Untuk F.2, pilihan April **`Let's not talk here. Let's talk in your room?`** dan pilihan Mei **`Be careful from now on.`** aman dipakai; keduanya tidak menambah bukti kamera. Bila tombol `Go see her` belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan mengisi kekurangan dengan `Sneak in`, karena itu dapat memicu `EV_BAD02` pada kunjungan ketiga.
+**Catatan dialog:** “dialog otomatis” berarti teks/percakapan berjalan sendiri dan tidak perlu memilih apa pun. Event romance April, Mei, dan Juni memiliki tombol pilihan; event utama/telepon Juni tidak. Untuk F.2, gunakan **`Let's not talk here. Let's talk in your room?`** pada April, **`Be careful from now on.`** pada Mei, dan **`Do you like meat?`** pada Juni bila muncul. Pilihan-pilihan ini tidak menambah bukti kamera. Bila tombol `Go see her` belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan mengisi kekurangan dengan `Sneak in`, karena itu dapat memicu `EV_BAD02` pada kunjungan ketiga.
 
 ### F.3 Bad ending ketiga — Plan Failed
 
