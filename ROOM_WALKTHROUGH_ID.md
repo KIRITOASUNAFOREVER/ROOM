@@ -1159,15 +1159,21 @@ Ini adalah bad ending paling cepat karena cukup memicu `sinnyu_count==3`.
 1. Dari New Game, pilih **`Yes`** pada `Skip the prologue and tutorial?`.
 2. Kamera fire alarm otomatis aktif; tidak ada pilihan hadiah yang perlu dijawab.
 3. Buat **A1**, lalu **LOAD A1**.
-4. **Senin:** pilih **`Sneak in`**, lalu **`Home`**.
-5. **Selasa:** pilih **`Sneak in`**, lalu **`Home`**.
-6. **Rabu:** pilih **`Sneak in`**. Game langsung memanggil event tertangkap sebelum menu **`Install camera / Search / Home`** muncul.
-7. Saat muncul dua pilihan:
+4. Isi **plan 5 slot** seperti ini:
+   - Slot 1 / Senin: **`Sneak in`**
+   - Slot 2 / Selasa: **`Sneak in`**
+   - Slot 3 / Rabu: **`Sneak in`**
+   - Slot 4 / Kamis: **`Rest`**
+   - Slot 5 / Jumat: **`Rest`**
+5. Setelah slot ke-5 terisi, plan otomatis disubmit dan mulai dijalankan.
+6. Pada `Sneak in` pertama dan kedua, pilih **`Home`**.
+7. Pada `Sneak in` ketiga, game langsung memanggil event tertangkap sebelum menu **`Install camera / Search / Home`** muncul.
+8. Saat muncul dua pilihan:
    - pilih **`Assault her`**;
    - jangan pilih `Hide`.
-8. Ending yang keluar: **BAD END: Irresistible Desires**.
-9. **Mengapa hanya tiga tindakan?** Karena ending langsung dipanggil pada `Sneak in` ketiga. Kalender tidak sempat meminta slot Kamis/Jumat atau Minggu. Jadi F.1 memang hanya membutuhkan tiga kali **`Sneak in`**, bukan tiga dari lima slot yang harus diselesaikan.
-10. Setelah melihat ending, jangan overwrite A1.
+9. Ending yang keluar: **BAD END: Irresistible Desires**.
+10. **Mengapa hanya tiga `Sneak in`?** Karena ending langsung dipanggil saat `Sneak in` ketiga dijalankan. Namun plan tetap harus berisi 5 slot; dua slot terakhir diisi **`Rest`** sebagai pengisi.
+11. Setelah melihat ending, jangan overwrite A1.
 
 ### F.2 Bad ending kedua — Mission Failed
 
