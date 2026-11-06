@@ -251,7 +251,7 @@ Pure Love memiliki sistem `J_ninsin` yang berasal dari pilihan hasil scene J:
 Teknisnya memakai RNG saat ending dihitung. Karena itu:
 
 - Simpan sebelum perhitungan ending jika ingin menguji kedua hasil.
-- Untuk hasil deterministik, capai `J_ninsin >= 10`.
+- Untuk peluang tertinggi dari source yang tersedia, capai `J_ninsin = 6`; tiga scene masing-masing hanya dapat memberi maksimal `+2`.
 - `J_ninsin == 0` selalu menghasilkan Pure Love End gelap.
 
 ## 11. Daftar seluruh ending
@@ -280,8 +280,8 @@ Teknisnya memakai RNG saat ending dihitung. Karena itu:
 3. Gunakan kamera secukupnya; jangan biarkan `keikaido` mencapai 9.
 4. Capai `koukando >= 10` dan `yuisei >= 10`.
 5. Gunakan confession shortcut atau ikuti event Pure Love normal.
-6. Dalam scene J, kumpulkan `J_ninsin >= 10`.
-7. Selesaikan perhitungan ending untuk **TRUE END**.
+6. Dalam scene J, pilih internal jumlah besar pada J1, J2, dan J3 sehingga target source yang realistis adalah `J_ninsin = 6`.
+7. Selesaikan perhitungan ending; nilai 6 masuk peluang RNG 50%, bukan True End deterministik.
 
 ### 12.2 Pure Love End gelap
 
@@ -475,9 +475,9 @@ Untuk rute hubungan atau completionist, ikuti urutan ini:
    - hasil biasa memberi `J_ninsin += 1`;
    - hasil banyak memberi `J_ninsin += 2`;
    - cabang `finish outside` tidak memberikan poin kehamilan yang sama.
-5. Untuk **TRUE END**, targetkan `J_ninsin >= 10`. Cara praktisnya adalah memilih hasil internal dengan nilai tertinggi pada ketiga scene dan reload dari save sebelum `finish` bila hasil scene tidak sesuai.
+5. Untuk peluang tertinggi, pilih `Nakadasi Tairyou` pada J1, J2, dan J3. Itu memberi `+2` per scene, sehingga total normalnya `J_ninsin=6`.
 6. Untuk **PURE LOVE END: Shrouded in Darkness**, biarkan `J_ninsin == 0`, atau gunakan save sebelum perhitungan akhir lalu biarkan RNG gagal pada rentang nilai rendah. Ending ini bukan route terpisah; ia adalah hasil perhitungan akhir Pure Love.
-7. Pada akhir `EV_jyunaiEND`, game menghitung `J_ninsin`. Nilai 10 atau lebih selalu menghasilkan **TRUE END: Happiness Given Form**; nilai 0 selalu menghasilkan **Shrouded in Darkness**; nilai 1–9 mengikuti tabel peluang pada bagian ending utama.
+7. Pada akhir `EV_jyunaiEND`, game menghitung `J_ninsin`. Nilai 0 selalu menghasilkan **Shrouded in Darkness**; nilai 1–5 memiliki peluang 10%; nilai 6–9 memiliki peluang 50%; nilai 10+ selalu True End. Dari tiga scene standar, nilai maksimum yang terbaca adalah 6.
 
 #### Titik save Pure Love
 
@@ -663,7 +663,7 @@ Begitu `route_jyunai == 1`, source game langsung melewati menu aktivitas minggua
 4. Ulangi sampai tahap Pure Love 2 dan 3; setiap tahap kembali ke jadwal secara otomatis.
 5. Pada scene terakhir, pilih hasil yang menaikkan `J_ninsin` bila mengejar **TRUE END**.
 6. Setelah tahap terakhir, jangan menekan `Skip` pada menu Minggu. Biarkan `EV_jyunaiEND` menghitung ending.
-7. `J_ninsin >= 10` menghasilkan **TRUE END: Happiness Given Form**; `J_ninsin == 0` menghasilkan **PURE LOVE END: Shrouded in Darkness**.
+7. `J_ninsin == 0` menghasilkan **PURE LOVE END: Shrouded in Darkness**; `J_ninsin=6` memberi peluang 50%, bukan jaminan True End.
 
 ### C.7 Setelah Subjugation aktif: instruksi hari per hari
 
@@ -795,20 +795,23 @@ Gunakan resep ini jika targetnya **TRUE END: Happiness Given Form** atau **PURE 
 
 Jika sebuah event wajib mengambil satu slot, event tersebut menggantikan aktivitas pada hari itu; jangan memilih aktivitas tambahan setelah event. Setelah `route_jyunai=1`, kalender normal berhenti dan game otomatis memanggil tahap Pure Love.
 
-### D.7 Counter ending Pure Love yang sudah dihitung
+### D.7 Counter ending Pure Love dan tindakan scene yang benar
 
-Untuk **TRUE END**, target dan tindakan scene harus seperti berikut:
+“Tindakan scene” berarti tombol pada minigame H, bukan pilihan dialog:
 
-| Tahap | Hasil scene | Tambahan `J_ninsin` | Total minimal berjalan |
-|---:|---|---:|---:|
-| J1 | Hasil `finish inside` biasa | +1 | 1 |
-| J1 | Hasil `finish inside` tinggi | +2 | 2 |
-| J2 | Hasil `finish inside` biasa | +1 | 3 |
-| J2 | Hasil `finish inside` tinggi | +2 | 4 |
-| J3 | Hasil `finish inside` biasa | +1 | 5 |
-| J3 | Hasil `finish inside` tinggi | +2 | 6 |
+1. Gunakan tombol foreplay seperti `Kiss`, `Touch`, `Conversation`, dan tindakan lanjutan yang tersedia pada level kemahiran.
+2. Gunakan tombol `Slow`/`Fast` untuk menaikkan `H_syasei`.
+3. Setelah `H_syasei > 9`, tombol climax/finish terbuka.
+4. Pilih **`Inside` / `Nakadasi`**, bukan `Outside` / `Sotodasi`.
+5. Untuk nilai tertinggi, pilih cabang **`Large amount` / `Nakadasi Tairyou`**. Source memberi `J_ninsin += 2`.
 
-Karena source juga dapat memberi tambahan pada cabang scene tertentu, jangan berhenti pada enam poin tabel. Untuk target aman **`J_ninsin >= 10`**, ulangi scene dengan save sebelum `finish`, pilih cabang internal tertinggi, dan pastikan counter final yang terlihat di state mencapai 10 sebelum `EV_jyunaiEND`. Tidak ada kalkulasi manual lain: **0 = Shrouded**, **10 atau lebih = True**; nilai 1–9 adalah hasil RNG.
+| Hasil finish | Syarat pada source | Tambahan `J_ninsin` |
+|---|---|---:|
+| Internal biasa (`Nakadasi Hutuu`) | Pilih `Inside`, tetapi belum masuk cabang large amount | +1 |
+| Internal jumlah besar (`Nakadasi Tairyou`) | `H_syasei > 9`, lalu pilih finish internal jumlah besar | +2 |
+| External (`Sotodasi`) | Pilih finish di luar | +0 |
+
+Ulangi resep tersebut pada **J1, J2, dan J3**. Hasil maksimum yang terlihat dari tiga file scene adalah **`2 + 2 + 2 = 6`**, bukan 10. `EV_jyunaiEND.ks` memang memeriksa `J_ninsin >= 10` untuk True End, tetapi source yang dianalisis hanya menambah `J_ninsin` di `H_J1_pisuton.ks`, `H_J2_pisuton.ks`, dan `H_J3_pisuton.ks`, masing-masing maksimal `+2`. Jadi jangan menjanjikan bahwa tiga scene saja pasti bisa mencapai 10; nilai akhir `6` masuk cabang probabilitas `>=6` (50%), sedangkan `0` langsung menjadi Shrouded in Darkness.
 
 ### D.8 Resep harian Subjugation — dari awal sampai route entry
 
