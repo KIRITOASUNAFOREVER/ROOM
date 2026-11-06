@@ -1195,6 +1195,9 @@ Gunakan syarat `Go see her` tanpa bukti yang cukup.
    - event pertemuan Konno juga hanya dialog otomatis; tidak ada tombol jawaban;
    - event telepon Yume juga hanya dialog otomatis; tidak ada tombol jawaban;
    - jika event April **`Don't let 'em get to you.`** muncul, pilih **`Let's not talk here. Let's talk in your room?`** bila ingin menaikkan kewaspadaan. Pilihan ini tidak langsung mengaktifkan route Yume, tetapi counter kewaspadaan naik 1.
+   - **Event Mei `5_1` — lampu kamar Yume:** otomatis; Shinya memperbaiki lampu dan membuka informasi lokasi shopping. Tidak ada pilihan tombol.
+   - **Event Mei `5_2` — telepon Yume:** otomatis; Yume membicarakan pesta penyambutan kerja. Tidak ada pilihan tombol.
+   - **Event romance Mei `5gatu` — insiden klien:** ada pilihan. Untuk F.2 pilih **`Be careful from now on.`** (`Sunday_P_koukando += 1`) atau pilihan lain; pilihan ini tidak mengubah `yusuri_goukei`. Pilihan yang disarankan menjaga hubungan tanpa menaikkan kewaspadaan.
    - jangan memilih dialog atau tindakan yang memulai confession Yume;
    - jangan memilih **`Go see her`** sebelum bukti siap.
 8. Pada Minggu pertama ketika tombol kunjungan muncul, pilih **`Go see her`**.
@@ -1215,11 +1218,11 @@ Gunakan pola yang sama pada setiap baris. Angka bulan mengikuti source: `R_month
 | Minggu kalender | Slot Senin–Jumat | Minggu | Hasil |
 |---|---|---|---|
 | April 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tidak ada kamera/bukti |
-| Mei 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Jangan memulai route Yume |
+| Mei 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu event `5_1`, `5_2`, dan romance Mei; pilih `Be careful from now on.` jika pilihan muncul |
 | Juni 1–4 | `Rest, Rest, Rest, Rest, Rest` | `Save` → `Rest` | Tunggu sampai kalender melewati `R_month=12` |
 | Juli minggu pertama | `Rest, Rest, Rest, Rest, Rest` | Saat tombol muncul, pilih `Go see her` | Masuk event Mission Failed |
 
-**Catatan dialog:** “dialog otomatis” berarti teks/percakapan berjalan sendiri dan tidak perlu memilih apa pun. Pada empat minggu awal, event utama April tidak meminta jawaban tombol; cukup biarkan event selesai. Jika event romance April dengan tiga pilihan muncul, pilih **`Let's not talk here. Let's talk in your room?`** untuk menaikkan `Sunday_P_keikaido`, lalu lanjutkan jadwal. Bila tombol `Go see her` belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan mengisi kekurangan dengan `Sneak in`, karena itu dapat memicu `EV_BAD02` pada kunjungan ketiga.
+**Catatan dialog:** “dialog otomatis” berarti teks/percakapan berjalan sendiri dan tidak perlu memilih apa pun. Event romance April dan Mei berbeda: keduanya memiliki tombol pilihan. Untuk F.2, pilihan April **`Let's not talk here. Let's talk in your room?`** dan pilihan Mei **`Be careful from now on.`** aman dipakai; keduanya tidak menambah bukti kamera. Bila tombol `Go see her` belum muncul pada Minggu pertama Juli, pilih `Save` → `Rest` sekali lagi dan cek Minggu berikutnya. Jangan mengisi kekurangan dengan `Sneak in`, karena itu dapat memicu `EV_BAD02` pada kunjungan ketiga.
 
 ### F.3 Bad ending ketiga — Plan Failed
 
